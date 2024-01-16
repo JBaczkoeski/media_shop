@@ -42,23 +42,22 @@
                     <div class="container col-12 h3 fw-bold ps-5">
                         Nowości dla Ciebie
                     </div>
-                    <div class="container col-12 h3 ps-5">
+                    <div class="container col-12 h3">
                         <div class="row">
                             @for($i = 1; $i <= 4; $i++)
                                 <a href="#" class="btn container col-3">
-                                    <div class="container col-12">
+                                    <div class="container col-10">
                                         <img class="img-fluid" src="{{Storage::url('image/image_3.jpg')}}"
                                              alt="zdjęcie">
                                     </div>
-                                    <div class="container col-12 h5"
-                                         style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <div class="container col-10 clamp-2-lines">
                                         Laptop ACER Nitro 5 AN515-46 15.6" IPS 144Hz R5-6600H 16GB RAM 512GB SSD GeForce
                                         RTX3050 Windows 11 Home
                                     </div>
-                                    <div class="container col-12 mx-5">
+                                    <div class="container col-10 mt-3">
                                         OCENA
                                     </div>
-                                    <div class="container col-12 h1 text-danger mt-5 text-center">
+                                    <div class="container col-10 h1 text-danger mt-3 text-center">
                                         499.00 zł
                                     </div>
                                 </a>

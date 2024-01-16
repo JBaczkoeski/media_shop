@@ -11,6 +11,9 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1e48838dc2.js" crossorigin="anonymous"></script>
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <title>Elektroniczny Sklep</title>
 </head>
 <body>
