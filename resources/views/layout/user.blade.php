@@ -69,7 +69,7 @@
 
 @yield('content')
 
-<footer class="footer mt-5 bg-dark text-white text-center py-3 fixed-bottom">
+<footer class="footer mt-5 bg-dark text-white text-center py-3">
     <div class="container">
         <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
     </div>
