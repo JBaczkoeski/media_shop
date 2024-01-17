@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('postal_code')->nullable();
             $table->unsignedBigInteger('provinces_id')->nullable();
-            $table->string('role');
             $table->rememberToken();
             $table->timestamps();
 

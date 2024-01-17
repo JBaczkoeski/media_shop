@@ -3,16 +3,24 @@
     <div class="container-fluid">
         <div class="row">
             <div class="container col-5 ms-5 text-center pt-5 my-2">
-                <div class="row py-5 d-flex justify-content-center mt-5 border border-4 border-dark rounded rounded-1 shadow">
+                <div class="row py-5 d-flex justify-content-center mt-5 border border-3 rounded rounded-1 shadow">
                     <div class="container col-12 h2">
                         Logowanie
                     </div>
-                    <form class="form-group col-7 row">
+                    {{$errors}}
+                    <form method="post" action="{{ route('login') }}" class="form-group col-7 row">
+                        @csrf
                         <div class="container my-4">
-                            <input type="text" class="form-control" placeholder="E-mail">
+                            <input name="email" type="text" class="form-control" placeholder="E-mail">
+                            @if($errors->first('email'))
+                                <p class="text-danger">{{($errors->first('email'))}}</p>
+                            @endif
                         </div>
                         <div class="container">
-                            <input type="password" class="form-control" placeholder="Hasło">
+                            <input name="password" type="password" class="form-control" placeholder="Hasło">
+                            @if($errors->first('password'))
+                                <p class="text-danger">{{($errors->first('password'))}}</p>
+                            @endif
                         </div>
                         <div class="container text-start my-4">
                             <a href="#" class="link-primary">Zresetuj hasło</a>
@@ -24,7 +32,7 @@
                 </div>
             </div>
             <div class="container col-5 ms-5 text-center pt-5 my-2">
-                <div class="row py-5 d-flex justify-content-center mt-5 border border-4 border-dark rounded rounded-1 shadow">
+                <div class="row py-5 d-flex justify-content-center mt-5 border border-3 rounded rounded-1 shadow">
                     <div class="container col-12 h2">
                         Nowy klient
                     </div>
