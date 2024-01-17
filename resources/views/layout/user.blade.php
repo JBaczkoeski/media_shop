@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="color: #EFB70A">Elektroniczny Sklep</a>
+        <a class="navbar-brand" href="/" style="color: #EFB70A">Elektroniczny Sklep</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,6 +47,7 @@
                 </button>
             </form>
             <ul class="navbar-nav ms-auto me-3">
+                @auth()
                 <li class="nav-item dropdown me-4">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,11 +58,15 @@
                         <li><a class="dropdown-item" href="#">Moje dane</a></li>
                         <li><a class="dropdown-item" href="#">Opinie</a></li>
                         <li><a class="dropdown-item" href="#">Zwroty</a></li>
-                        <li class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Zaloguj się</a></li>
-                        <li><a class="dropdown-item" href="#">Zarejestruj się</a></li>
                     </ul>
                 </li>
+                @endauth
+                @guest()
+                <li class="nav-item d-flex align-items-center me-4">
+                    <a class="btn nav-link me-2 text-white" href="/logowanie">Zaloguj się</a>
+                    <a class="btn nav-link text-white" href="/rejestracja">Zarejestruj się</a>
+                </li>
+                @endguest
                 <li class="nav-item">
                     <a href="#" class="btn"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #EFB70A;"></i></a>
                 </li>
