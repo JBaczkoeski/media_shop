@@ -26,7 +26,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-5">
-                <li><a class="nav-link text-white btn" href="#">Produkty</a></li>
+                <li><a class="nav-link text-white btn" href="/admin/produkty">Produkty</a></li>
                 <li><a class="nav-link text-white btn" href="#">Użytkownicy</a></li>
                 <li><a class="nav-link text-white btn" href="#">Pracownicy</a></li>
                 <li><a class="nav-link text-white btn" href="#">Magazyn</a></li>
@@ -47,6 +47,7 @@
         </div>
     </div>
 </nav>
+@yield('side_bar')
 
 @yield('content')
 

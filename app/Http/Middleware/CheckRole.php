@@ -12,13 +12,13 @@ class CheckRole
     public function handle($request, Closure $next, ...$roles)
     {
         if (!Auth::check())
-            return redirect('login');
+            return redirect('/logowanie');
 
         $user = Auth::user();
 
         if($user->hasAnyRole($roles))
             return $next($request);
 
-        return redirect('login');
+        return redirect('/logowanie');
     }
 }

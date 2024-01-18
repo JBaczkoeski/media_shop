@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,4 +38,14 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
     Route::get('/admin', function(){
         return view('admin.home');
     });
+    Route::get('/admin/produkty', function(){
+        return view('admin.products');
+    });
+
+    Route::get('/admin/produkty/dodaj',[ProductsController::class, 'create'])->name('product.add');
+    Route::post('/admin/produkty/dodaj/dodaj',[ProductsController::class, 'store'])->name('product.store');
+    Route::get('/admin/produkty/marki',[ProductsController::class, 'showBrands'])->name('brands');
+    Route::post('/admin/produkty/marki/dodaj',[ProductsController::class, 'storeBrands'])->name('brands.create');
+    Route::get('/admin/produkty/kategorie',[ProductsController::class, 'showCategories'])->name('categories');
+    Route::post('/admin/produkty/kategorie/dodaj',[ProductsController::class, 'storeCategories'])->name('categories.create');
 });
