@@ -7,7 +7,6 @@
                     <div class="container col-12 h2">
                         Logowanie
                     </div>
-                    {{$errors}}
                     <form method="post" action="{{ route('login') }}" class="form-group col-7 row">
                         @csrf
                         <div class="container my-4">

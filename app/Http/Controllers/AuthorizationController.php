@@ -12,10 +12,12 @@ use Illuminate\Support\Facades\Hash;
 class AuthorizationController extends Controller
 {
     public function login(LoginRequest $request){
-
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
+            if (auth()->user()->hasRole('admin')) {
+                return redirect('/admin');
+            }
             return redirect()->intended('/');
         }
 

@@ -32,6 +32,7 @@
                         Produkty
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/produkty">Wszystkie</a></li>
                         <li><a class="dropdown-item" href="#">Telewizory</a></li>
                         <li><a class="dropdown-item" href="#">Komputery</a></li>
                         <li><a class="dropdown-item" href="#">Telefony</a></li>

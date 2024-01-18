@@ -26,6 +26,15 @@ Route::get('/rejestracja', function () {
     return view('register');
 });
 
-Route::post('/zarejestruj',[AuthorizationController::class, 'register'])->name('register');
-Route::post('/zaloguj',[AuthorizationController::class, 'login'])->name('login');
-Route::post('/wyloguj',[AuthorizationController::class, 'logout'])->name('logout');
+Route::post('/zarejestruj', [AuthorizationController::class, 'register'])->name('register');
+Route::post('/zaloguj', [AuthorizationController::class, 'login'])->name('login');
+Route::post('/wyloguj', [AuthorizationController::class, 'logout'])->name('logout');
+
+Route::get('/produkty', function () {return view('user.products');})->name('products');
+
+//Admin
+Route::group(['middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/admin', function(){
+        return view('admin.home');
+    });
+});
