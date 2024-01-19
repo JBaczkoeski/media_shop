@@ -38,14 +38,18 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
     Route::get('/admin', function(){
         return view('admin.home');
     });
-    Route::get('/admin/produkty', function(){
-        return view('admin.products');
-    });
 
+//PRODUCTS ADMIN
+    Route::get('/admin/produkty',[ProductsController::class, 'index'])->name('products');
+    Route::get('/admin/produkty/zarchiwizowane',[ProductsController::class, 'indexArchived'])->name('products.archived');
     Route::get('/admin/produkty/dodaj',[ProductsController::class, 'create'])->name('product.add');
     Route::post('/admin/produkty/dodaj/dodaj',[ProductsController::class, 'store'])->name('product.store');
     Route::get('/admin/produkty/marki',[ProductsController::class, 'showBrands'])->name('brands');
     Route::post('/admin/produkty/marki/dodaj',[ProductsController::class, 'storeBrands'])->name('brands.create');
     Route::get('/admin/produkty/kategorie',[ProductsController::class, 'showCategories'])->name('categories');
     Route::post('/admin/produkty/kategorie/dodaj',[ProductsController::class, 'storeCategories'])->name('categories.create');
+    Route::get('/admin/produkty/produkt/edytuj/{id}',[ProductsController::class, 'edit'])->name('product.edit');
+    Route::patch('/admin/produkty/produkt/zaktualizuj',[ProductsController::class, 'update'])->name('product.update');
+    Route::post('/admin/produkty/zarchiwizuj/{id}',[ProductsController::class, 'archive'])->name('product.archive');
+    Route::delete('/admin/produkty/usun/{id}',[ProductsController::class, 'delete'])->name('product.delete');
 });

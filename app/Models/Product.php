@@ -17,5 +17,17 @@ class Product extends Model
         'category_id',
         'brand_id',
         'image_src',
+        'archived'
     ];
+
+
+    public function brand()
+    {
+        return $this->belongsTo('App\Models\Brand');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 }

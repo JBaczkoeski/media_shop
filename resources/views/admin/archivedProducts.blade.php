@@ -36,18 +36,7 @@
                                     <button type="submit" class="btn" title="Usuń">
                                         <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i>
                                     </button>
-                                </form>
-                                <a href="/admin/produkty/produkt/edytuj/{{$product['id']}}" class="btn" title="Edytuj"><i class="fa-solid fa-pen-to-square fa-xl" style="color: #EFB70A;"></i></a>
-                                <div style="display: inline-block;">
-                                    <form action="/admin/produkty/zarchiwizuj/{{$product['id']}}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn" title="Zarchwizuj">
-                                            <i class="fa-solid fa-box-archive fa-xl" style="color: #EFB70A;"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-
+                                </form>                            </td>
                         </tr>
                     @endforeach
                     </tbody>

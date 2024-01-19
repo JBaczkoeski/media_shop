@@ -35,7 +35,7 @@ class ProductsRequest extends FormRequest
             'quantity_in_stock' => 'required|integer',
             'category_id' => 'required|integer',
             'brand_id' => 'required|integer',
-            'image_src' => 'required|image',
+            'image_src' => 'image',
         ];
     }
 }
