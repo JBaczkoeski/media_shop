@@ -30,7 +30,7 @@
                 <li><a class="nav-link text-white btn" href="/admin/uzytkonicy">Regiony</a></li>
                 <li><a class="nav-link text-white btn" href="/admin/pracownicy">Pracownicy</a></li>
                 <li><a class="nav-link text-white btn" href="#">Magazyn</a></li>
-                <li><a class="nav-link text-white btn" href="#">Sklepy</a></li>
+                <li><a class="nav-link text-white btn" href="/admin/sklepy">Sklepy</a></li>
                 <li><a class="nav-link text-white btn" href="#">Dostawy</a></li>
             </ul>
             <ul class="navbar-nav ms-auto me-3">

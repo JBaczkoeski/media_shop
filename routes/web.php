@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProvincesController;
+use App\Http\Controllers\StoresController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,4 +63,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
 //EMPLOYEES ADMIN
     Route::get('/admin/pracownicy',[EmployeesController::class, 'index'])->name('employees');
     Route::get('/admin/pracownicy/dodawanie',[EmployeesController::class, 'create'])->name('employees.create');
+
+//STORES ADMIN
+    route::get('/admin/sklepy',[StoresController::class, 'index'])->name('stores');
+
 });
