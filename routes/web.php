@@ -56,8 +56,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
     Route::delete('/admin/produkty/usun/{id}',[ProductsController::class, 'delete'])->name('product.delete');
 
 //PROVINCES ADMIN
-    Route::get('/admin/urzytkonicy',[ProvincesController::class, 'index'])->name('provinces');
+    Route::get('/admin/uzytkonicy',[ProvincesController::class, 'index'])->name('provinces');
+    Route::post('/admin/uzytkonicy/region/dodaj',[ProvincesController::class, 'store'])->name('provinces.store');
 
 //EMPLOYEES ADMIN
     Route::get('/admin/pracownicy',[EmployeesController::class, 'index'])->name('employees');
+    Route::get('/admin/pracownicy/dodawanie',[EmployeesController::class, 'create'])->name('employees.create');
 });

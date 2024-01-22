@@ -40,7 +40,6 @@
                             @if($errors->first('password_confirmation'))
                                 <p class="text-danger">{{($errors->first('password_confirmation'))}}</p>
                             @endif
-
                         </div>
                         <div class="container mb-5">
                             <button class="btn btn-lg btn-warning">Załóż konto</button>

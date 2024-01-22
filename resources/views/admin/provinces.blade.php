@@ -31,10 +31,10 @@
             </div>
             <div class="container col-6">
                 <div class="container col-12 text-center h3">
-                    Dodaj markę
+                    Dodaj region
                 </div>
                 <form class="text-center d-flex justify-content-center row" method="post"
-                      action="{{ route('province.create') }}">
+                      action="{{ route('provinces.store') }}">
                     @csrf
                     <div class="form-group col-7 my-5">
                         <input class="form-control" type="text" name="name" placeholder="Nazwa">

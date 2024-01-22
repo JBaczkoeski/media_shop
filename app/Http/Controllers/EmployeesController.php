@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Provinces;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class EmployeesController extends Controller
     {
         $employees = User::role(['shop_worker','warehouse_worker','shop_manager'])->get();
 
-        return view('admin.employees', ['employees' => $employees]);
+        return view('admin.employees', ['employees' => $employees, 'provinces' => $provinces]);
     }
 
     /**
@@ -23,7 +24,9 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        //
+        $provinces = Provinces::all();
+
+        return view('admin.addEmployee', ['provinces' => $provinces]);
     }
 
     /**
