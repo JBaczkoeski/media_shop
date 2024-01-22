@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProvincesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,4 +54,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
     Route::patch('/admin/produkty/produkt/zaktualizuj',[ProductsController::class, 'update'])->name('product.update');
     Route::post('/admin/produkty/zarchiwizuj/{id}',[ProductsController::class, 'archive'])->name('product.archive');
     Route::delete('/admin/produkty/usun/{id}',[ProductsController::class, 'delete'])->name('product.delete');
+
+//PROVINCES ADMIN
+    Route::get('/admin/urzytkonicy',[ProvincesController::class, 'index'])->name('provinces');
+
+//EMPLOYEES ADMIN
+    Route::get('/admin/pracownicy',[EmployeesController::class, 'index'])->name('employees');
 });
