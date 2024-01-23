@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmployeeRequest;
+use App\Models\Employee;
 use App\Models\Provinces;
+use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,9 +17,9 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = User::role(['shop_worker','warehouse_worker','shop_manager'])->get();
+        $employees = User::role(['shop_worker', 'warehouse_worker', 'shop_manager'])->get();
 
-        return view('admin.employees', ['employees' => $employees, 'provinces' => $provinces]);
+        return view('admin.employees', ['employees' => $employees]);
     }
 
     /**
@@ -25,16 +28,28 @@ class EmployeesController extends Controller
     public function create()
     {
         $provinces = Provinces::all();
+        $stores = Store::all();
 
-        return view('admin.addEmployee', ['provinces' => $provinces]);
+        return view('admin.addEmployee', ['provinces' => $provinces, 'stores' => $stores]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
-        //
+
+        $user = User::create($request->all());
+
+        if ($request->position == 'shop_worker') {
+            $user->assignRole('shop_worker');
+        } elseif ($request->position == 'warehouse_worker') {
+            $user->assignRole('warehouse_worker');
+        } else {
+            $user->assignRole('shop_manager');
+        }
+
+        return redirect()->back();
     }
 
     /**

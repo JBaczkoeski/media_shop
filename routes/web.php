@@ -63,8 +63,9 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
 //EMPLOYEES ADMIN
     Route::get('/admin/pracownicy',[EmployeesController::class, 'index'])->name('employees');
     Route::get('/admin/pracownicy/dodawanie',[EmployeesController::class, 'create'])->name('employees.create');
-
+    Route::post('/admin/pracownicy/dodawanie/dodawanie', [EmployeesController::class, 'store'])->name('employees.store');
 //STORES ADMIN
     route::get('/admin/sklepy',[StoresController::class, 'index'])->name('stores');
-
+    route::get('/admin/sklepy/dodawanie',[StoresController::class, 'create'])->name('stores.add');
+    route::post('/admin/sklepy/dodawanie/dodaj',[StoresController::class, 'store'])->name('stores.store');
 });

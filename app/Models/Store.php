@@ -15,4 +15,9 @@ class Store extends Model
         'city',
         'province_id',
     ];
+
+    public function province()
+    {
+        return $this->belongsTo('App\Models\Provinces');
+    }
 }

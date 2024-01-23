@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoresRequest;
+use App\Models\Provinces;
 use App\Models\Store;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,7 +15,9 @@ class StoresController extends Controller
      */
     public function index()
     {
-        return view('admin.stores');
+        $stores = Store::with(['province'])->get();
+
+        return view('admin.stores', ['stores' => $stores]);
     }
 
     /**
@@ -21,15 +25,19 @@ class StoresController extends Controller
      */
     public function create()
     {
-        //
+        $provinces = Provinces::all();
+
+        return view('admin.addStore',['provinces' => $provinces]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoresRequest $request)
     {
-        //
+        Store::create($request->all());
+
+        return redirect()->back();
     }
 
     /**

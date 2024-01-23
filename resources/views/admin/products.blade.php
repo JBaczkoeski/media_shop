@@ -13,7 +13,6 @@
                         <th scope="col">Nazwa</th>
                         <th scope="col">Opis</th>
                         <th scope="col">Cena</th>
-                        <th scope="col">Ilość</th>
                         <th scope="col">Kategoria</th>
                         <th scope="col">Marka</th>
                         <th scope="col">Akcje</th>
@@ -26,7 +25,6 @@
                             <td>{{ $product['name'] }}</td>
                             <td>{{ $product['description'] }}</td>
                             <td>{{ $product['price'] }}</td>
-                            <td>{{ $product['quantity_in_stock'] }}</td>
                             <td>{{ $product['category']['name'] }}</td>
                             <td>{{ $product['brand']['name'] }}</td>
                             <td>
