@@ -51,4 +51,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function store()
+    {
+        return $this->belongsTo('App\Models\Store');
+    }
+
+    public function warehouse()
+    {
+        return $this->belongsTo('App\Models\Warehouse');
+    }
+    public function province()
+    {
+        return $this->belongsTo('App\Models\Provinces','provinces_id');
+    }
 }

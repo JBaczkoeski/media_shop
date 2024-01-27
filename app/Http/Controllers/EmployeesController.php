@@ -17,7 +17,7 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = User::role(['shop_worker', 'warehouse_worker', 'shop_manager'])->get();
+        $employees = User::role(['shop_worker', 'warehouse_worker', 'shop_manager'])->with('province','store','warehouse')->get();
 
         return view('admin.employees', ['employees' => $employees]);
     }
