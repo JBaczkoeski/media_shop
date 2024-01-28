@@ -18,5 +18,6 @@ class RolesAndPermissionsSeeder extends Seeder
         Role::create(['name' => 'shop_worker']);
         Role::create(['name' => 'warehouse_worker']);
         Role::create(['name' => 'shop_manager']);
+        Role::create(['name' => 'warehouse_manager']);
     }
 }

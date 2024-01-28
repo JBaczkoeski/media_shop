@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProvincesController;
 use App\Http\Controllers\StoresController;
+use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,8 +65,16 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
     Route::get('/admin/pracownicy',[EmployeesController::class, 'index'])->name('employees');
     Route::get('/admin/pracownicy/dodawanie',[EmployeesController::class, 'create'])->name('employees.create');
     Route::post('/admin/pracownicy/dodawanie/dodawanie', [EmployeesController::class, 'store'])->name('employees.store');
+
 //STORES ADMIN
     route::get('/admin/sklepy',[StoresController::class, 'index'])->name('stores');
+    route::get('/admin/sklep/{id}',[StoresController::class, 'show'])->name('store');
     route::get('/admin/sklepy/dodawanie',[StoresController::class, 'create'])->name('stores.add');
     route::post('/admin/sklepy/dodawanie/dodaj',[StoresController::class, 'store'])->name('stores.store');
+
+//WAREHOUSE ADMIN
+    route::get('/admin/magazyny', [WarehouseController::class, 'index'])->name('warehouses');
+    route::get('/admin/magazyny/{id}', [WarehouseController::class, 'show'])->name('warehouse');
+    route::get('/admin/magazyny/dodawanie', [WarehouseController::class, 'create'])->name('warehouses.add');
+    route::post('/admin/magazyny/dodawanie/dodaj', [WarehouseController::class, 'store'])->name('warehouses.store');
 });

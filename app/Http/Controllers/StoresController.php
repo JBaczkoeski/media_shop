@@ -6,6 +6,7 @@ use App\Http\Requests\StoresRequest;
 use App\Models\Provinces;
 use App\Models\Store;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StoresController extends Controller
@@ -43,17 +44,21 @@ class StoresController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Store $store)
+    public function show($id)
     {
-        //
+        $store = Store::find($id)->with('province')->get();
+
+        $employees = User::all()->where('store_id', '=', $store[0]['id']);
+
+        return view('admin.store',['store' => $store, 'employees' => $employees]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Store $store)
+    public function edit($id)
     {
-        //
+
     }
 
     /**

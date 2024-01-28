@@ -1,15 +1,15 @@
 @extends('layout.admin')
 @section('side_bar')
-    @include('includes.adminStoresNavbar')
+    @include('includes.adminWarehousesNavbar')
 @endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="container mt-5 pt-4">
                 <div class="container col-12 h2 my-5 text-center">
-                    Dodawanie sklepu
+                    Dodawanie magazynu
                 </div>
-                <form method="post" action="{{ route('stores.store') }}" class="container col-6">
+                <form method="post" action="{{ route('warehouses.store') }}" class="container col-6">
                     @csrf
                     <div class="form-group my-3">
                         <input type="text" name="name" class="form-control" value="Media shop - " placeholder="Nazwa">
@@ -41,7 +41,7 @@
                         @endif
                     </div>
                     <div class="form-group my-3 text-center">
-                        <button type="submit" class="btn btn-warning">Dodaj sklep</button>
+                        <button type="submit" class="btn btn-warning">Dodaj magazyn</button>
                     </div>
                 </form>
             </div>

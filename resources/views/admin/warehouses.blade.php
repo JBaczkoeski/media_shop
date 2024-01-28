@@ -1,6 +1,6 @@
 @extends('layout.admin')
 @section('side_bar')
-    @include('includes.adminStoresNavbar')
+    @include('includes.adminWarehousesNavbar')
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -18,15 +18,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($stores as $store)
+                    @foreach($warehouses as $warehouse)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $store['name'] }}</td>
-                            <td>{{ $store['address'] }}</td>
-                            <td>{{ $store['city'] }}</td>
-                            <td>{{ $store['province']['name'] }}</td>
+                            <td>{{ $warehouse['name'] }}</td>
+                            <td>{{ $warehouse['address'] }}</td>
+                            <td>{{ $warehouse['city'] }}</td>
+                            <td>{{ $warehouse['province']['name'] }}</td>
                             <td>
-                                <form action="/admin/produkty/usun/{{$store['id']}}" method="POST"
+                                <form action="/admin/produkty/usun/{{$warehouse['id']}}" method="POST"
                                       style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
@@ -34,12 +34,12 @@
                                         <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i>
                                     </button>
                                 </form>
-                                <a href="/admin/produkty/produkt/edytuj/{{$store['id']}}" class="btn"
+                                <a href="/admin/produkty/produkt/edytuj/{{$warehouse['id']}}" class="btn"
                                    title="Edytuj"><i class="fa-solid fa-pen-to-square fa-xl"
                                                      style="color: #EFB70A;"></i></a>
                                 <div style="display: inline-block;">
-                                    <a href="/admin/sklep/{{$store['id']}}" title="Podgląd">
-                                            <i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #EFB70A;"></i>
+                                    <a href="/admin/sklep/{{$warehouse['id']}}" title="Podgląd">
+                                        <i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #EFB70A;"></i>
                                     </a>
                                 </div>
                             </td>
