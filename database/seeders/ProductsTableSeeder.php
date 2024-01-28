@@ -25,7 +25,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => $faker->randomFloat(2,1,10000),
                 'category_id' => $faker->randomElement($categoryIds),
                 'brand_id' => $faker->randomElement($brandIds),
-                'image_src' => $faker->imageUrl(640, 480, 'technics'),
+                'image_src' => $faker->imageUrl(640, 480, 'technics '),
                 'archived' => 0,
             ]);
         }
