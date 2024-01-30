@@ -15,7 +15,7 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['category', 'brand'])->where('archived', 0)->get();
+        $products = Product::with(['category', 'brand'])->where('archived', 0)->paginate(15);
 
         if (Auth::user()->hasRole('admin')) {
             return view('admin.products', ['products' => $products]);

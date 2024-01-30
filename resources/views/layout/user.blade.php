@@ -12,6 +12,9 @@
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1e48838dc2.js" crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>Elektroniczny Sklep</title>
@@ -49,29 +52,30 @@
             </form>
             <ul class="navbar-nav ms-auto me-3">
                 @auth()
-                <li class="nav-item dropdown me-4">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Konto
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Zamówienia</a></li>
-                        <li><a class="dropdown-item" href="#">Moje dane</a></li>
-                        <li><a class="dropdown-item" href="#">Opinie</a></li>
-                        <li><a class="dropdown-item" href="#">Zwroty</a></li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Wyloguj</a></li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                    </ul>
-                </li>
+                    <li class="nav-item dropdown me-4">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Konto
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Zamówienia</a></li>
+                            <li><a class="dropdown-item" href="#">Moje dane</a></li>
+                            <li><a class="dropdown-item" href="#">Opinie</a></li>
+                            <li><a class="dropdown-item" href="#">Zwroty</a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Wyloguj</a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </ul>
+                    </li>
                 @endauth
                 @guest()
-                <li class="nav-item d-flex align-items-center me-4">
-                    <a class="btn nav-link me-2 text-white" href="/logowanie">Zaloguj się</a>
-                    <a class="btn nav-link text-white" href="/rejestracja">Zarejestruj się</a>
-                </li>
+                    <li class="nav-item d-flex align-items-center me-4">
+                        <a class="btn nav-link me-2 text-white" href="/logowanie">Zaloguj się</a>
+                        <a class="btn nav-link text-white" href="/rejestracja">Zarejestruj się</a>
+                    </li>
                 @endguest
                 <li class="nav-item">
                     <a href="#" class="btn"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #EFB70A;"></i></a>

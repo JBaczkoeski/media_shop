@@ -12,6 +12,9 @@
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1e48838dc2.js" crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>Elektroniczny Sklep</title>

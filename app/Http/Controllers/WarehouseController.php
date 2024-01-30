@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Provinces;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
+use JetBrains\PhpStorm\NoReturn;
 
 class WarehouseController extends Controller
 {
@@ -21,11 +22,9 @@ class WarehouseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        dd(1);
+     public function create()
+     {
         $provinces = Provinces::all();
-        dd($provinces);
 
         return view('admin.addWarehouse',['provinces' => $provinces]);
     }

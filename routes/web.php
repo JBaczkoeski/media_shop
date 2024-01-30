@@ -75,6 +75,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
 //WAREHOUSE ADMIN
     route::get('/admin/magazyny', [WarehouseController::class, 'index'])->name('warehouses');
     route::get('/admin/magazyny/{id}', [WarehouseController::class, 'show'])->name('warehouse');
-    route::get('/admin/magazyny/dodawanie', [WarehouseController::class, 'create'])->name('warehouses.add');
+    route::get('/admin/magazyny/dodawanie', [WarehouseController::class, 'create']);
     route::post('/admin/magazyny/dodawanie/dodaj', [WarehouseController::class, 'store'])->name('warehouses.store');
 });
