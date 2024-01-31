@@ -6,15 +6,18 @@
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
             <div class="col-12 mt-3">
+                <div class="container col-6">
+                    <input class="form-control" type="text" id="search" placeholder="Wyszukaj...">
+                </div>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nazwa</th>
-                        <th scope="col">Opis</th>
-                        <th scope="col">Cena</th>
-                        <th scope="col">Kategoria</th>
-                        <th scope="col">Marka</th>
+                        <th scope="col" class="sort" data-sort="id">#</th>
+                        <th scope="col" class="sort" data-sort="name">Nazwa</th>
+                        <th scope="col" class="sort" data-sort="description">Opis</th>
+                        <th scope="col" class="sort" data-sort="price">Cena</th>
+                        <th scope="col" class="sort" data-sort="category_id">Kategoria</th>
+                        <th scope="col" class="sort" data-sort="brand_id">Marka</th>
                         <th scope="col">Akcje</th>
                     </tr>
                     </thead>
@@ -59,3 +62,36 @@
         </div>
     </div>
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.sort').on('click', function() {
+            var column = $(this).data('sort');
+            $.ajax({
+                url: '/admin/produkty',
+                type: 'get',
+                data: { column: column },
+                success: function(response) {
+                    $('body').html(response);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('#search').on('keyup', function() {
+            var query = $(this).val();
+            $.ajax({
+                url: '/admin/produkty/wyszukaj',
+                type: 'get',
+                data: { query: query },
+                success: function(response) {
+                    $('body').html(response);
+                    $('#search').val(query);
+                }
+            });
+        });
+    });
+</script>
+

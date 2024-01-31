@@ -36,11 +36,10 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="/produkty">Wszystkie</a></li>
-                        <li><a class="dropdown-item" href="#">Telewizory</a></li>
-                        <li><a class="dropdown-item" href="#">Komputery</a></li>
-                        <li><a class="dropdown-item" href="#">Telefony</a></li>
-                        <li><a class="dropdown-item" href="#">Aparaty</a></li>
-                        <li><a class="dropdown-item" href="#">Gry</a></li>
+                        @foreach(\App\Models\Category::all() as $category)
+                            <li><a class="dropdown-item sort" data-sort="{{$category['id']}}">{{$category['name']}}</a></li>
+
+                        @endforeach
                     </ul>
                 </li>
             </ul>
@@ -92,5 +91,20 @@
         <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
     </div>
 </footer>
+<script>
+    $(document).on('click', '.sort', function () {
+        var category = $(this).data('sort');
+        $.ajax({
+            url: '/produkty',
+            type: 'get',
+            data: {category: category},
+            success: function (response) {
+                $('body').html(response);
+                history.pushState(null, '', '/produkty?category=' + category);
+                location.reload();
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Provinces;
 use App\Models\Store;
 use App\Models\User;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
@@ -29,8 +30,9 @@ class EmployeesController extends Controller
     {
         $provinces = Provinces::all();
         $stores = Store::all();
+        $warehouses = Warehouse::all();
 
-        return view('admin.addEmployee', ['provinces' => $provinces, 'stores' => $stores]);
+        return view('admin.addEmployee', ['provinces' => $provinces, 'stores' => $stores, 'warehouses'=>$warehouses]);
     }
 
     /**
@@ -40,7 +42,6 @@ class EmployeesController extends Controller
     {
 
         $user = User::create($request->all());
-
         if ($request->position == 'shop_worker') {
             $user->assignRole('shop_worker');
         } elseif ($request->position == 'warehouse_worker') {

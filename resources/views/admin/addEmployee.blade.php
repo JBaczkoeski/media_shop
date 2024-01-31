@@ -99,14 +99,17 @@
                             <p class="text-danger">{{($errors->first('shop_id'))}}</p>
                         @endif
                     </div>
-                    {{--                    <div class="form-group my-3">--}}
-                    {{--                        <select type="text" name="warehouse_id" class="form-control">--}}
-                    {{--                            <option selected disabled>Województwo</option>--}}
-                    {{--                            @foreach($provinces as $province)--}}
-                    {{--                            <option value="{{$province['id']}}">{{$province['name']}}</option>--}}
-                    {{--                            @endforeach--}}
-                    {{--                        </select>--}}
-                    {{--                    </div>--}}
+                    <div class="form-group my-3">
+                        <select type="text" name="warehouse_id" class="form-control">
+                            <option selected disabled>Jeżeli pracownik magazynu wybierz magazyn</option>
+                            @foreach($warehouses as $warehouse)
+                                <option value="{{$warehouse['id']}}">{{$warehouse['name']}}</option>
+                            @endforeach
+                        </select>
+                        @if($errors->first('shop_id'))
+                            <p class="text-danger">{{($errors->first('$warehouse_id'))}}</p>
+                        @endif
+                    </div>
                     <div class="form-group my-3 text-center">
                         <button type="submit" class="btn btn-lg btn-warning">Dodaj pracownika</button>
                     </div>
