@@ -11,7 +11,7 @@ use App\Models\User;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
-class EmployeesController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
