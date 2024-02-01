@@ -43,8 +43,9 @@
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex input-group w-50 mx-auto">
-                <input type="search" class="form-control" placeholder="Wyszukaj" aria-label="Search"/>
+            <form method="get" action=" {{ route('user.products.search') }}" class="d-flex input-group w-50 mx-auto">
+                @csrf
+                <input name="query" type="search" class="form-control" placeholder="Wyszukaj" aria-label="Search"/>
                 <button class="btn btn-outline-warning" type="button">
                     Szukaj
                 </button>
@@ -77,7 +78,7 @@
                     </li>
                 @endguest
                 <li class="nav-item">
-                    <a href="#" class="btn"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #EFB70A;"></i></a>
+                    <a href="/koszyk" class="btn"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #EFB70A;"></i></a>
                 </li>
             </ul>
         </div>

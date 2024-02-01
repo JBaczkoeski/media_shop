@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProvincesController;
@@ -37,6 +38,10 @@ Route::post('/wyloguj', [AuthorizationController::class, 'logout'])->name('logou
 
 //USER PRODUCTS
 Route::get('/produkty', [ProductsController::class, 'index'])->name('user.products');
+Route::get('/produkty/wyszukaj', [ProductsController::class, 'search'])->name('user.products.search');
+
+Route::post('/koszyk/dodaj/{product}', [CartController::class, 'store'])->name('cart.store');
+Route::get('/koszyk', [CartController::class, 'index'])->name('cart');
 
 //Admin
 Route::group(['middleware' => ['auth', 'role:admin']], function () {

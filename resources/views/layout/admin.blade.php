@@ -48,7 +48,13 @@
     </div>
 </nav>
 @yield('side_bar')
-
+<div class="container d-flex justify-content-end">
+    @if (session('status'))
+        <div class="container col-3 alert alert-success text-center">
+            {{ session('status') }}
+        </div>
+    @endif
+</div>
 @yield('content')
 
 <footer class="footer mt-5 bg-dark text-white text-center py-3">

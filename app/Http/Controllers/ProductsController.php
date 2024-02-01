@@ -69,10 +69,13 @@ class ProductsController extends Controller
         $query = $request->get('query');
         $products = Product::where('name', 'like', "%{$query}%")->paginate(10);
 
+        $categories = Category::all();
+        $brands = Brand::all();
+
         if (Auth::user()->hasRole('admin')) {
             return view('admin.products', ['products' => $products])->render();
         } elseif (Auth::user()->hasRole('user')) {
-            return view('user.products', $products);
+            return view('user.products',['products' => $products, 'categories' => $categories, 'brands' => $brands]);
         }
     }
 
@@ -142,6 +145,8 @@ class ProductsController extends Controller
         $productData['archived'] = 0;
 
         Product::create($productData);
+
+        $request->session()->flash('status', 'Produkt został dodany!');
 
         return redirect()->back()->with('success', 'Produkt dodano pomyślnie');
     }

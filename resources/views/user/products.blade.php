@@ -4,7 +4,7 @@
         <div class="row">
             <div class="container col-2 pt-3">
                 <div class="container col-12 h5">
-                    {{$category['name'] ?? 'Wszystkie produkty'}}({{$products->total()}})
+                    {{$category['name'] ?? 'Wszystkie produkty'}} @if(isset($products))({{$products->total()}})@endif
                 </div>
                 <hr>
                 <div class="container">
@@ -38,8 +38,8 @@
                         </div>
                         <div class="form-group my-3">
                             <label for="price">Cena</label>
-                            <input type="number" value="{{ $min_price }}" class="form-control my-2" name="min_price" id="min_price" placeholder="Od">
-                            <input type="number" value="{{ $max_price }}" class="form-control" name="max_price" id="max_price" placeholder="Do">
+                            <input type="number" value="{{ $min_price ?? '' }}" class="form-control my-2" name="min_price" id="min_price" placeholder="Od">
+                            <input type="number" value="{{ $max_price ?? '' }}" class="form-control" name="max_price" id="max_price" placeholder="Do">
                         </div>
                         <button type="submit" class="btn btn-primary">Sortuj</button>
                     </form>
@@ -49,7 +49,7 @@
                 <div class="container col-12">
                     <div class="row">
                         @foreach($products as $product)
-                            <div class="container col-12 border border-1 px-4 py-3 my-1">
+                            <div href="/produkty/produkt" class="container col-12 border border-1 px-4 py-3 my-1">
                                 <div class="row">
                                     <div class="container col-12 h4 text-center">
                                         {{ $product['name'] }}
@@ -68,7 +68,11 @@
                                         <p>Stacjonarnie: Wybierz sklep</p>
                                         <p>Czas wysyłki: 1-2 dni robocze</p>
                                         <hr>
-                                        <a href="#" class="btn btn-lg btn-warning">Dodaj do koszyka</a>
+                                        <a href="#" class="btn btn-lg btn-success my-3">Sprawdź produkt</a>
+                                        <form method="post" action="/koszyk/dodaj/{{$product['id']}}">
+                                            @csrf
+                                        <button class="btn btn-lg btn-warning">Dodaj do koszyka</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
