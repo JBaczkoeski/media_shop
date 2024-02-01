@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoresRequest;
-use App\Models\Provinces;
+use App\Models\Province;
 use App\Models\Store;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -26,7 +26,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        $provinces = Provinces::all();
+        $provinces = Province::all();
 
         return view('admin.addStore',['provinces' => $provinces]);
     }

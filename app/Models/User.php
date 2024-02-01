@@ -63,6 +63,6 @@ class User extends Authenticatable
     }
     public function province()
     {
-        return $this->belongsTo('App\Models\Provinces','provinces_id');
+        return $this->belongsTo('App\Models\Province','provinces_id');
     }
 }

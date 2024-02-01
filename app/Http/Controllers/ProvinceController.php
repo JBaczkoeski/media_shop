@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProvincesRequest;
-use App\Models\Provinces;
+use App\Models\Province;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        $provinces = Provinces::all();
+        $provinces = Province::all();
 
         return view('admin.provinces',['provinces' => $provinces]);
     }
@@ -24,7 +24,7 @@ class ProvinceController extends Controller
      */
     public function store(ProvincesRequest $request)
     {
-        Provinces::create($request->all());
+        Province::create($request->all());
 
         return redirect()->back();
     }
@@ -32,9 +32,9 @@ class ProvinceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Provinces $provinces)
+    public function destroy(Province $provinces)
     {
-        Provinces::destroy($provinces);
+        Province::destroy($provinces);
 
         return redirect()->back();
     }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
-use App\Models\Provinces;
+use App\Models\Province;
 use App\Models\Store;
 use App\Models\User;
 use App\Models\Warehouse;
@@ -28,7 +28,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $provinces = Provinces::all();
+        $provinces = Province::all();
         $stores = Store::all();
         $warehouses = Warehouse::all();
 

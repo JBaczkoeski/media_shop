@@ -18,6 +18,6 @@ class Warehouse extends Model
 
     public function province()
     {
-        return $this->belongsTo('App\Models\Provinces');
+        return $this->belongsTo('App\Models\Province');
     }
 }
