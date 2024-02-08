@@ -22,9 +22,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($products as $product)
+                    @foreach($viewData['products'] as $product)
                         <tr>
-                            <th scope="row">{{ ($products->currentPage()-1) * $products->perPage() + $loop->iteration }}</th>
+                            <th scope="row">{{ ($viewData['products']->currentPage()-1) * $viewData['products']->perPage() + $loop->iteration }}</th>
                             <td>{{ $product['name'] }}</td>
                             <td>{{ $product['description'] }}</td>
                             <td>{{ $product['price'] }}</td>
@@ -56,7 +56,7 @@
                     </tbody>
                 </table>
                 <div class="container col-6">
-                    {{ $products->links('pagination::bootstrap-5') }}
+                    {{ $viewData['products']->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

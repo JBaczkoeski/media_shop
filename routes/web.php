@@ -58,8 +58,8 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::post('/produkty/marki/dodaj', [ProductController::class, 'storeBrands'])->name('brands.create');
     Route::get('/produkty/kategorie', [ProductController::class, 'showCategories'])->name('categories');
     Route::post('/produkty/kategorie/dodaj', [ProductController::class, 'storeCategories'])->name('categories.create');
-    Route::get('/produkty/produkt/edytuj/{id}', [ProductController::class, 'edit'])->name('product.edit');
-    Route::patch('/produkty/produkt/zaktualizuj', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/produkty/produkt/edytuj/{product}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::patch('/produkty/produkt/zaktualizuj/{product}', [ProductController::class, 'update'])->name('product.update');
     Route::post('/produkty/zarchiwizuj/{id}', [ProductController::class, 'archive'])->name('product.archive');
     Route::delete('/produkty/usun/{id}', [ProductController::class, 'delete'])->name('product.delete');
     Route::get('/produkty/wyszukaj', [ProductController::class, 'search']);

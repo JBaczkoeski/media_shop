@@ -28,9 +28,9 @@ class ProductController extends Controller
     {
         $products = $this->productFilterService->filteredProducts($request);
         $viewData = $this->productService->index($products, $request->min_price, $request->max_price);
-//dd($viewData);
+
         if (Auth::check() && Auth::user()->hasRole('admin')) {
-            return view('admin.Product.Index', ['products' => $products]);
+            return view('admin.Product.Index', ['viewData' => $viewData]);
         } else {
             return view('user.products', ['viewData' => $viewData])->withInput($request->all());
         }
@@ -59,10 +59,8 @@ class ProductController extends Controller
         return view('admin.Product.Archived.Index', ['products' => $products]);
     }
 
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $product = Product::with(['category', 'brand'])->find($id);
-
         $brands = Brand::all();
         $categories = Category::all();
 
@@ -79,17 +77,11 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Produkt został pomyślnie zarchiwizowany');
     }
 
-    public function update(ProductRequest $request)
+    public function update(ProductRequest $request, Product $product)
     {
-        $product = Product::find($request->input('id'));
+        $this->productService->update($request, $product);
 
-        if (!$product) {
-            return redirect()->back()->with('error', 'Produkt nie został znaleziony');
-        }
-
-        $product->update($request->all());
-
-        return redirect()->back()->with('success', 'Produkt został pomyślnie zaktualizowany');
+        return redirect()->route('products');
     }
 
     public function show($id)
@@ -101,6 +93,14 @@ class ProductController extends Controller
         } elseif (Auth::user()->hasRole('user')) {
             return view('user.product', $product);
         }
+    }
+
+    public function create()
+    {
+        $brands = Brand::all();
+        $categories = Category::all();
+
+        return view('admin.Product.Create', ['brands' => $brands, 'categories' => $categories]);
     }
 
     public function store(ProductRequest $request)
@@ -122,14 +122,6 @@ class ProductController extends Controller
         $request->session()->flash('status', 'Produkt został dodany!');
 
         return redirect()->back()->with('success', 'Produkt dodano pomyślnie');
-    }
-
-    public function create()
-    {
-        $brands = Brand::all();
-        $categories = Category::all();
-
-        return view('admin.Product.Create', ['brands' => $brands, 'categories' => $categories]);
     }
 
     public function showBrands()

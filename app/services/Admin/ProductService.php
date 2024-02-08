@@ -35,7 +35,7 @@ class ProductService
 
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'Product category successfully created.',
+            'message' => 'Product successfully created.',
         ]);
     }
 
@@ -45,7 +45,7 @@ class ProductService
 
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'Product category successfully updated.',
+            'message' => 'Product successfully updated.',
         ]);
     }
 

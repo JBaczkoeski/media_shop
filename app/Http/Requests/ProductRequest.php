@@ -32,7 +32,6 @@ class ProductRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'quantity_in_stock' => 'required|integer',
             'category_id' => 'required|integer',
             'brand_id' => 'required|integer',
             'image_src' => 'image',

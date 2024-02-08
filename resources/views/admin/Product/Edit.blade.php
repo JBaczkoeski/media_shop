@@ -9,7 +9,7 @@
                 <div class="container col-12 h3 text-center my-3">
                     EDYTUJ PRODUKT
                 </div>
-                <form method="post" action="{{ route('product.update') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('product.update', ['product' => $product['id']]) }}" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
                     <input type="hidden" name="id" value="{{ $product['id'] }}">
@@ -35,16 +35,8 @@
                         @endif
                     </div>
                     <div class="form-group my-3">
-                        <input type="number" value="{{ $product['quantity_in_stock'] }}" name="quantity_in_stock"
-                               class="form-control" placeholder="Ilość">
-                        @if($errors->first('quantity_in_stock'))
-                            <p class="text-danger">{{($errors->first('quantity_in_stock'))}}</p>
-                        @endif
-                    </div>
-                    <div class="form-group my-3">
                         <select name="category_id" class="form-control">
-                            <option value="{{ $product['category']['id'] }}" disabled
-                                    selected>{{ $product['category']['name'] }}</option>
+                            <option value="{{ $product['category_id'] }}" selected>{{ $product['category']['name'] }}</option>
                             @foreach($categories as $category)
                                 <option value="{{$category['id']}}">{{ $category['name'] }}</option>
                             @endforeach
@@ -55,8 +47,7 @@
                     </div>
                     <div class="form-group my-3">
                         <select name="brand_id" class="form-control">
-                            <option {{ $product['brand']['id'] }} selected
-                                    disabled>{{ $product['brand']['name'] }}</option>
+                            <option value="{{ $product['brand_id'] }}" selected>{{ $product['brand']['name'] }}</option>
                             @foreach($brands as $brand)
                                 <option value="{{$brand['id']}}">{{ $brand['name'] }}</option>
                             @endforeach
