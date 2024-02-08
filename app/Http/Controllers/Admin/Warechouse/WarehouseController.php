@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Warechouse;
 
+use App\Http\Controllers\Controller;
 use App\Models\Province;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
-use JetBrains\PhpStorm\NoReturn;
 
 class WarehouseController extends Controller
 {
@@ -16,7 +16,7 @@ class WarehouseController extends Controller
     {
         $warehouses = Warehouse::with(['province'])->get();
 
-        return view('admin.warehouses', ['warehouses' => $warehouses]);
+        return view('admin.Warehouse.Index', ['warehouses' => $warehouses]);
     }
 
     /**
@@ -26,7 +26,7 @@ class WarehouseController extends Controller
      {
         $provinces = Province::all();
 
-        return view('admin.addWarehouse',['provinces' => $provinces]);
+        return view('admin.Warehouse.Create',['provinces' => $provinces]);
     }
 
     /**

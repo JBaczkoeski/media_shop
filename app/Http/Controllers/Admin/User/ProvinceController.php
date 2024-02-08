@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\User;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProvincesRequest;
 use App\Models\Province;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class ProvinceController extends Controller
 {
@@ -16,7 +15,7 @@ class ProvinceController extends Controller
     {
         $provinces = Province::all();
 
-        return view('admin.provinces',['provinces' => $provinces]);
+        return view('admin.Province.Index',['provinces' => $provinces]);
     }
 
     /**

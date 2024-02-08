@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeRequest;
@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     {
         $employees = User::role(['shop_worker', 'warehouse_worker', 'shop_manager'])->with('province','store','warehouse')->get();
 
-        return view('admin.employees', ['employees' => $employees]);
+        return view('admin.Employee.Index', ['employees' => $employees]);
     }
 
     /**
@@ -32,7 +32,7 @@ class EmployeeController extends Controller
         $stores = Store::all();
         $warehouses = Warehouse::all();
 
-        return view('admin.addEmployee', ['provinces' => $provinces, 'stores' => $stores, 'warehouses'=>$warehouses]);
+        return view('admin.Employee.Create', ['provinces' => $provinces, 'stores' => $stores, 'warehouses'=>$warehouses]);
     }
 
     /**
@@ -42,9 +42,9 @@ class EmployeeController extends Controller
     {
 
         $user = User::create($request->all());
-        if ($request->position == 'shop_worker') {
+        if ($request->position === 'shop_worker') {
             $user->assignRole('shop_worker');
-        } elseif ($request->position == 'warehouse_worker') {
+        } elseif ($request->position === 'warehouse_worker') {
             $user->assignRole('warehouse_worker');
         } else {
             $user->assignRole('shop_manager');

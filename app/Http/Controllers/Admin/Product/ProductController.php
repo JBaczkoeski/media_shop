@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BrandsRequest;
@@ -57,7 +57,7 @@ class ProductController extends Controller
         $brands = Brand::all();
 
         if (Auth::check() && Auth::user()->hasRole('admin')) {
-            return view('admin.products', ['products' => $products]);
+            return view('admin.Product.Index', ['products' => $products]);
         } else {
             return view('user.products', ['products' => $products, 'category' => $category_name, 'categories' => $categories, 'brands' => $brands, 'min_price'=>$min_price, 'max_price'=>$max_price])->withInput($request->all());
         }
@@ -73,7 +73,7 @@ class ProductController extends Controller
         $brands = Brand::all();
 
         if (Auth::user()->hasRole('admin')) {
-            return view('admin.products', ['products' => $products])->render();
+            return view('admin.Product.Index', ['products' => $products])->render();
         } elseif (Auth::user()->hasRole('user')) {
             return view('user.products',['products' => $products, 'categories' => $categories, 'brands' => $brands]);
         }
@@ -83,7 +83,7 @@ class ProductController extends Controller
     {
         $products = Product::with(['category', 'brand'])->where('archived', 1)->get();
 
-        return view('admin.archivedProducts', ['products' => $products]);
+        return view('admin.Product.Archived.Index', ['products' => $products]);
     }
 
     public function edit($id)
@@ -93,7 +93,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
 
-        return view('admin.editProduct', ['product' => $product, 'brands' => $brands, 'categories' => $categories]);
+        return view('admin.Product.Edit', ['product' => $product, 'brands' => $brands, 'categories' => $categories]);
     }
 
     public function archive($id)
@@ -156,14 +156,14 @@ class ProductController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
 
-        return view('admin.addProduct', ['brands' => $brands, 'categories' => $categories]);
+        return view('admin.Product.Create', ['brands' => $brands, 'categories' => $categories]);
     }
 
     public function showBrands()
     {
         $brands = Brand::all();
 
-        return view('admin.brands')->with('brands', $brands);
+        return view('admin.Product.Brand.Index')->with('brands', $brands);
     }
 
     public function storeBrands(BrandsRequest $request)
@@ -178,7 +178,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.categories')->with('categories', $categories);
+        return view('admin.Product.Category.Index')->with('categories', $categories);
     }
 
     public function storeCategories(BrandsRequest $request)

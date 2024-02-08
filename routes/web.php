@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\Admin\Employee\EmployeeController;
+use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\Store\StoreController;
+use App\Http\Controllers\Admin\User\ProvinceController;
+use App\Http\Controllers\Admin\Warechouse\WarehouseController;
+use App\Http\Controllers\Auth\AuthorizationController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProvinceController;
-use App\Http\Controllers\StoreController;
-use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 
 /*
