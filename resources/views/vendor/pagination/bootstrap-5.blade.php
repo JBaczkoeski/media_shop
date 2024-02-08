@@ -27,13 +27,13 @@
         <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between row">
             <div class="container col-12 text-center">
                 <p class="small text-muted">
-                    {!! __('Showing') !!}
+                    Pokazuje wyniki od
                     <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
-                    {!! __('to') !!}
+                    do
                     <span class="fw-semibold">{{ $paginator->lastItem() }}</span>
-                    {!! __('of') !!}
+                    z
                     <span class="fw-semibold">{{ $paginator->total() }}</span>
-                    {!! __('results') !!}
+                    rezultatów
                 </p>
             </div>
 

@@ -4,62 +4,35 @@ namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BrandsRequest;
-use App\Http\Requests\ProductsRequest;
+use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\Admin\ProductService;
+use App\Services\ProductFilterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    protected $productFilterService;
+    protected $productService;
+
+    public function __construct(ProductFilterService $productFilterService, ProductService $productService)
+    {
+        $this->productFilterService = $productFilterService;
+        $this->productService = $productService;
+    }
+
     public function index(Request $request)
     {
-        $category = $request->get('category');
-        $sort = $request->get('sort', 'asc');
-        $column = $request->get('column');
-        $brand = $request->get('brand');
-        $min_price = $request->get('min_price');
-        $max_price = $request->get('max_price');
-
-        $query = Product::query();
-
-        if ($category) {
-            $query->where('category_id', '=', $category);
-        }
-
-        if ($sort) {
-            $query->orderBy('price', $sort);
-        }
-
-        if ($column) {
-            $query->orderBy($column);
-        }
-
-        if ($request->filled('brand')) {
-            $query->where('brand_id', $brand);
-        }
-
-        if ($request->filled('min_price')) {
-            $query->where('price', '>=', $min_price);
-        }
-
-        if ($request->filled('max_price')) {
-            $query->where('price', '<=', $max_price);
-        }
-
-        $query->where('archived', 0);
-
-        $products = $query->paginate(10);
-
-        $category_name = Category::find($category);
-        $categories = Category::all();
-        $brands = Brand::all();
-
+        $products = $this->productFilterService->filteredProducts($request);
+        $viewData = $this->productService->index($products, $request->min_price, $request->max_price);
+//dd($viewData);
         if (Auth::check() && Auth::user()->hasRole('admin')) {
             return view('admin.Product.Index', ['products' => $products]);
         } else {
-            return view('user.products', ['products' => $products, 'category' => $category_name, 'categories' => $categories, 'brands' => $brands, 'min_price'=>$min_price, 'max_price'=>$max_price])->withInput($request->all());
+            return view('user.products', ['viewData' => $viewData])->withInput($request->all());
         }
     }
 
@@ -75,7 +48,7 @@ class ProductController extends Controller
         if (Auth::user()->hasRole('admin')) {
             return view('admin.Product.Index', ['products' => $products])->render();
         } elseif (Auth::user()->hasRole('user')) {
-            return view('user.products',['products' => $products, 'categories' => $categories, 'brands' => $brands]);
+            return view('user.products', ['products' => $products, 'categories' => $categories, 'brands' => $brands]);
         }
     }
 
@@ -106,7 +79,7 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Produkt został pomyślnie zarchiwizowany');
     }
 
-    public function update(ProductsRequest $request)
+    public function update(ProductRequest $request)
     {
         $product = Product::find($request->input('id'));
 
@@ -130,7 +103,7 @@ class ProductController extends Controller
         }
     }
 
-    public function store(ProductsRequest $request)
+    public function store(ProductRequest $request)
     {
         $productData = $request->all();
 

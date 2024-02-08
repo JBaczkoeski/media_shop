@@ -4,7 +4,7 @@
         <div class="row">
             <div class="container col-2 pt-3">
                 <div class="container col-12 h5">
-                    {{$category['name'] ?? 'Wszystkie produkty'}} @if(isset($products))({{$products->total()}})@endif
+                    {{$viewData['category']['name'] ?? 'Wszystkie produkty'}} @if(isset($viewData['products']))({{$viewData['products']->total()}})@endif
                 </div>
                 <hr>
                 <div class="container">
@@ -22,7 +22,7 @@
                             <label for="category">Kategoria</label>
                             <select class="form-control" name="category" id="category">
                                 <option disabled selected>Kategoria</option>
-                                @foreach($categories as $category)
+                                @foreach($viewData['categories'] as $category)
                                     <option value="{{$category['id']}}">{{$category['name']}}</option>
                                 @endforeach
                             </select>
@@ -31,15 +31,15 @@
                             <label for="brand">Marka</label>
                             <select class="form-control" name="brand" id="brand">
                                 <option disabled selected>Marka</option>
-                            @foreach($brands as $brand)
+                            @foreach($viewData['brands'] as $brand)
                                     <option value="{{$brand['id']}}">{{$brand['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group my-3">
                             <label for="price">Cena</label>
-                            <input type="number" value="{{ $min_price ?? '' }}" class="form-control my-2" name="min_price" id="min_price" placeholder="Od">
-                            <input type="number" value="{{ $max_price ?? '' }}" class="form-control" name="max_price" id="max_price" placeholder="Do">
+                            <input type="number" value="{{ $viewData['min_price'] ?? '' }}" class="form-control my-2" name="min_price" id="min_price" placeholder="Od">
+                            <input type="number" value="{{ $viewData['max_price'] ?? '' }}" class="form-control" name="max_price" id="max_price" placeholder="Do">
                         </div>
                         <button type="submit" class="btn btn-primary">Sortuj</button>
                     </form>
@@ -48,7 +48,7 @@
             <div class="container col-9 pt-2">
                 <div class="container col-12">
                     <div class="row">
-                        @foreach($products as $product)
+                        @foreach($viewData['products'] as $product)
                             <div href="/produkty/produkt" class="container col-12 border border-1 px-4 py-3 my-1">
                                 <div class="row">
                                     <div class="container col-12 h4 text-center">
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{ $products->appends(['sort' => request()->sort, 'category' => request()->category, 'min_price' => request()->min_price, 'max_price' => request()->max_price])->links('pagination::bootstrap-5') }}
+                        {{ $viewData['products']->appends(['sort' => request()->sort, 'category' => request()->category, 'min_price' => request()->min_price, 'max_price' => request()->max_price])->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
