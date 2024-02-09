@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\Employee\EmployeeController;
+use App\Http\Controllers\Admin\Product\BrandController;
+use App\Http\Controllers\Admin\Product\CategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\Store\StoreController;
 use App\Http\Controllers\Admin\User\ProvinceController;
@@ -50,20 +52,28 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     });
 
     //PRODUCTS ADMIN
-    Route::get('/produkty', [ProductController::class, 'index'])->name('products');
-    Route::get('/produkty/zarchiwizowane', [ProductController::class, 'indexArchived'])->name('products.archived');
-    Route::get('/produkty/dodaj', [ProductController::class, 'create'])->name('product.add');
-    Route::post('/produkty/dodaj/dodaj', [ProductController::class, 'store'])->name('product.store');
-    Route::get('/produkty/marki', [ProductController::class, 'showBrands'])->name('brands');
-    Route::post('/produkty/marki/dodaj', [ProductController::class, 'storeBrands'])->name('brands.create');
-    Route::get('/produkty/kategorie', [ProductController::class, 'showCategories'])->name('categories');
-    Route::post('/produkty/kategorie/dodaj', [ProductController::class, 'storeCategories'])->name('categories.create');
-    Route::get('/produkty/produkt/edytuj/{product}', [ProductController::class, 'edit'])->name('product.edit');
-    Route::patch('/produkty/produkt/zaktualizuj/{product}', [ProductController::class, 'update'])->name('product.update');
-    Route::post('/produkty/zarchiwizuj/{id}', [ProductController::class, 'archive'])->name('product.archive');
-    Route::delete('/produkty/usun/{id}', [ProductController::class, 'delete'])->name('product.delete');
-    Route::get('/produkty/wyszukaj', [ProductController::class, 'search']);
+    Route::group(['prefix' => 'produkty'], function () {
+        Route::get('/', [ProductController::class, 'index'])->name('products');
+        Route::get('/zarchiwizowane', [ProductController::class, 'indexArchived'])->name('products.archived');
+        Route::get('/dodaj', [ProductController::class, 'create'])->name('product.add');
+        Route::post('/dodaj/utworz', [ProductController::class, 'store'])->name('product.store');
+        Route::get('/edytuj/{product}', [ProductController::class, 'edit'])->name('product.edit');
+        Route::patch('/zaktualizuj/{product}', [ProductController::class, 'update'])->name('product.update');
+        Route::post('/zarchiwizuj/{product}', [ProductController::class, 'archive'])->name('product.archive');
+        Route::delete('/usun/{product}', [ProductController::class, 'delete'])->name('product.delete');
+        Route::get('/wyszukaj', [ProductController::class, 'search']);
 
+        //BRAND ADMIN
+        Route::group(['prefix' => 'marki'], function () {
+            Route::get('/', [BrandController::class, 'index'])->name('brands');
+            Route::post('/dodaj', [BrandController::class, 'store'])->name('brands.create');
+        });
+        //CATEGORY ADMIN
+        Route::group(['prefix' => 'kategorie'], function () {
+            Route::get('/', [CategoryController::class, 'index'])->name('categories');
+            Route::post('/dodaj', [CategoryController::class, 'store'])->name('categories.create');
+        });
+    });
     //PROVINCES ADMIN
     Route::get('/uzytkonicy', [ProvinceController::class, 'index'])->name('provinces');
     Route::post('/uzytkonicy/region/dodaj', [ProvinceController::class, 'store'])->name('provinces.store');

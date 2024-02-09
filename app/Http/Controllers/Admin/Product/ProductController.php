@@ -84,10 +84,8 @@ class ProductController extends Controller
         return redirect()->route('products');
     }
 
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::find($id);
-
         if (Auth::user()->hasRole('admin')) {
             return view('admin.product', $product);
         } elseif (Auth::user()->hasRole('user')) {
@@ -124,39 +122,9 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Produkt dodano pomyślnie');
     }
 
-    public function showBrands()
+    public function delete(Product $product)
     {
-        $brands = Brand::all();
-
-        return view('admin.Product.Brand.Index')->with('brands', $brands);
-    }
-
-    public function storeBrands(BrandsRequest $request)
-    {
-
-        Brand::create($request->all());
-
-        return redirect('/admin/produkty/marki');
-    }
-
-    public function showCategories()
-    {
-        $categories = Category::all();
-
-        return view('admin.Product.Category.Index')->with('categories', $categories);
-    }
-
-    public function storeCategories(BrandsRequest $request)
-    {
-
-        Category::create($request->all());
-
-        return redirect('/admin/produkty/kategorie');
-    }
-
-    public function delete($id)
-    {
-        Product::destroy($id);
+        Product::destroy($product);
 
         return redirect()->back()->with('success', 'Produkt usunięto pomyślnie');
     }
