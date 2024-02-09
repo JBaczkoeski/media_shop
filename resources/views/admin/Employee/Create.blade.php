@@ -89,7 +89,7 @@
                         @endif
                     </div>
                     <div class="form-group my-3">
-                        <select type="text" name="shop_id" class="form-control">
+                        <select name="store_id" class="form-control">
                             <option selected disabled>Jeżeli pracownik sklepu wybierz sklep</option>
                             @foreach($stores as $store)
                                 <option value="{{$store['id']}}">{{$store['name']}}</option>

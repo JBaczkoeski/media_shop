@@ -17,12 +17,14 @@
                             <th scope="row"> {{$loop->iteration}} </th>
                             <td>{{ $province['name'] }}</td>
                             <td>
-                                <a href="#" class="btn" title="Usuń"><i class="fa-solid fa-trash fa-xl"
-                                                                        style="color: #ff0000;"></i></a>
-                                <a href="#" class="btn" title="Edytuj"><i class="fa-solid fa-pen-to-square fa-xl"
-                                                                          style="color: #EFB70A;"></i></a>
-                                <a href="#" class="btn" title="Zarchwizuj"><i class="fa-solid fa-box-archive fa-xl"
-                                                                              style="color: #EFB70A;"></i></a>
+                                <form action="/admin/uzytkownicy/region/usun/{{$province['id']}}" method="POST"
+                                      style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn" title="Usuń">
+                                        <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

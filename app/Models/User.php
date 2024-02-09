@@ -29,7 +29,7 @@ class User extends Authenticatable
         'postal_code',
         'provinces_id',
         'warehouse_id',
-        'shop_id',
+        'store_id',
     ];
 
     /**

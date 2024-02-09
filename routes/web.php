@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Employee\EmployeeController;
+use App\Http\Controllers\Admin\Product\ArchivedController;
 use App\Http\Controllers\Admin\Product\BrandController;
 use App\Http\Controllers\Admin\Product\CategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
@@ -54,7 +55,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     //PRODUCTS ADMIN
     Route::group(['prefix' => 'produkty'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('products');
-        Route::get('/zarchiwizowane', [ProductController::class, 'indexArchived'])->name('products.archived');
+        Route::get('/zarchiwizowane', [ArchivedController::class, 'index'])->name('products.archived');
         Route::get('/dodaj', [ProductController::class, 'create'])->name('product.add');
         Route::post('/dodaj/utworz', [ProductController::class, 'store'])->name('product.store');
         Route::get('/edytuj/{product}', [ProductController::class, 'edit'])->name('product.edit');
@@ -74,25 +75,35 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
             Route::post('/dodaj', [CategoryController::class, 'store'])->name('categories.create');
         });
     });
+
     //PROVINCES ADMIN
-    Route::get('/uzytkonicy', [ProvinceController::class, 'index'])->name('provinces');
-    Route::post('/uzytkonicy/region/dodaj', [ProvinceController::class, 'store'])->name('provinces.store');
+    Route::group(['prefix' => 'uzytkownicy'], function () {
+        Route::get('/', [ProvinceController::class, 'index'])->name('provinces');
+        Route::post('/region/dodaj', [ProvinceController::class, 'store'])->name('provinces.store');
+        Route::delete('/region/usun/{province}', [ProvinceController::class, 'destroy'])->name('provinces.destroy');
+    });
 
     //EMPLOYEES ADMIN
-    Route::get('/pracownicy', [EmployeeController::class, 'index'])->name('employees');
-    Route::get('/pracownicy/dodawanie', [EmployeeController::class, 'create'])->name('employees.create');
-    Route::post('/pracownicy/dodawanie/dodawanie', [EmployeeController::class, 'store'])->name('employees.store');
+    Route::group(['prefix' => 'pracownicy'], function () {
+        Route::get('/', [EmployeeController::class, 'index'])->name('employees');
+        Route::get('/dodawanie', [EmployeeController::class, 'create'])->name('employees.create');
+        Route::post('/dodawanie/dodawanie', [EmployeeController::class, 'store'])->name('employees.store');
+    });
 
     //STORES ADMIN
-    Route::get('/sklepy', [StoreController::class, 'index'])->name('stores');
-    Route::get('/sklep/{id}', [StoreController::class, 'show'])->name('store');
-    Route::get('/sklepy/dodawanie', [StoreController::class, 'create'])->name('stores.add');
-    Route::post('/sklepy/dodawanie/dodaj', [StoreController::class, 'store'])->name('stores.store');
+    Route::group(['prefix' => 'sklepy'], function () {
+        Route::get('/', [StoreController::class, 'index'])->name('stores');
+        Route::get('/sklep/{store}', [StoreController::class, 'show'])->name('store');
+        Route::get('/dodawanie', [StoreController::class, 'create'])->name('stores.add');
+        Route::post('/dodawanie/dodaj', [StoreController::class, 'store'])->name('stores.store');
+    });
 
     //WAREHOUSE ADMIN
-    Route::get('/magazyny', [WarehouseController::class, 'index'])->name('warehouses');
-    Route::get('/magazyny/{id}', [WarehouseController::class, 'show'])->name('warehouse');
-    Route::get('/magazyny/dodawanie', [WarehouseController::class, 'create']);
-    Route::post('/magazyny/dodawanie/dodaj', [WarehouseController::class, 'store'])->name('warehouses.store');
+    Route::group(['prefix' => 'magazyny'], function () {
+        Route::get('/', [WarehouseController::class, 'index'])->name('warehouses');
+        Route::get('/{id}', [WarehouseController::class, 'show'])->name('warehouse');
+        Route::get('/dodawanie', [WarehouseController::class, 'create']);
+        Route::post('/dodawanie/dodaj', [WarehouseController::class, 'store'])->name('warehouses.store');
+    });
 });
 

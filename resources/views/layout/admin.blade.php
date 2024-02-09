@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-5">
                 <li><a class="nav-link text-white btn" href="/admin/produkty">Produkty</a></li>
-                <li><a class="nav-link text-white btn" href="/admin/uzytkonicy">Regiony</a></li>
+                <li><a class="nav-link text-white btn" href="/admin/uzytkownicy">Regiony</a></li>
                 <li><a class="nav-link text-white btn" href="/admin/pracownicy">Pracownicy</a></li>
                 <li><a class="nav-link text-white btn" href="/admin/magazyny">Magazyny</a></li>
                 <li><a class="nav-link text-white btn" href="/admin/sklepy">Sklepy</a></li>
@@ -55,7 +55,9 @@
         </div>
     @endif
 </div>
-@yield('content')
+<div style="min-height: 80vh">
+    @yield('content')
+</div>
 
 <footer class="footer mt-5 bg-dark text-white text-center py-3">
     <div class="container">

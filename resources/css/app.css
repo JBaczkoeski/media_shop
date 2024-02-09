@@ -4,3 +4,7 @@
     overflow: hidden;
     -webkit-line-clamp: 2;
 }
+
+.window-size {
+    min-height: 100vh;
+}

@@ -6,10 +6,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="container col-12 h2 text-center mt-5">
-               {{$store[0]['name']}}
+               {{$store['name']}}
             </div>
             <div class="container col-12 h4 text-center my-3">
-                {{$store[0]['province']['name']}} {{$store[0]['city']}} {{$store[0]['address']}}
+                {{$store['province']['name']}} {{$store['city']}} {{$store['address']}}
             </div>
             <div class="container col-12">
                 <div class="container col-12 h3 text-center my-5">

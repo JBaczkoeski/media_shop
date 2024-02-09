@@ -3,38 +3,35 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProvincesRequest;
+use App\Http\Requests\ProvinceRequest;
 use App\Models\Province;
+use App\services\Admin\ProvinceService;
 
 class ProvinceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $provinceService;
+
+    public function __construct(ProvinceService $provinceService)
+    {
+        $this->provinceService = $provinceService;
+    }
+
     public function index()
     {
-        $provinces = Province::all();
-
-        return view('admin.Province.Index',['provinces' => $provinces]);
+        return view('admin.User.Province.Index',['provinces' => Province::all()]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(ProvincesRequest $request)
+    public function store(ProvinceRequest $request)
     {
-        Province::create($request->all());
+        $this->provinceService->store($request);
 
-        return redirect()->back();
+        return redirect()->route('provinces');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Province $provinces)
+    public function destroy(Province $province)
     {
-        Province::destroy($provinces);
+        $this->provinceService->destroy($province);
 
-        return redirect()->back();
+        return redirect()->route('provinces');
     }
 }

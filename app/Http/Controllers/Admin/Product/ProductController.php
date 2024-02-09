@@ -52,13 +52,6 @@ class ProductController extends Controller
         }
     }
 
-    public function indexArchived()
-    {
-        $products = Product::with(['category', 'brand'])->where('archived', 1)->get();
-
-        return view('admin.Product.Archived.Index', ['products' => $products]);
-    }
-
     public function edit(Product $product)
     {
         $brands = Brand::all();

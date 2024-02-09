@@ -38,7 +38,7 @@
                                    title="Edytuj"><i class="fa-solid fa-pen-to-square fa-xl"
                                                      style="color: #EFB70A;"></i></a>
                                 <div style="display: inline-block;">
-                                    <a href="/admin/sklep/{{$store['id']}}" title="Podgląd">
+                                    <a href="/admin/sklepy/sklep/{{$store['id']}}" title="Podgląd">
                                             <i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #EFB70A;"></i>
                                     </a>
                                 </div>
