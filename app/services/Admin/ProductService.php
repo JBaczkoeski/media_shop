@@ -6,9 +6,19 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\services\ImageService;
+use Illuminate\Http\UploadedFile;
 
 class ProductService
 {
+    protected $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
+
+
     public function index($products, $min_price, $max_price): array
     {
         $category_name = null;
@@ -29,14 +39,17 @@ class ProductService
         ];
     }
 
-    public function store(ProductRequest $request): void
+    public function store(ProductRequest $request)
     {
-        Product::create($request->validated());
+        $productData = $request->all();
 
-        session()->flash('alert', [
-            'type' => 'success',
-            'message' => 'Product successfully created.',
-        ]);
+        if (isset($productData['image_src']) && $productData['image_src'] instanceof UploadedFile) {
+            $productData['image_src'] = $this->imageService->handleUpload($productData['image_src'], 'product');
+        }
+
+        $productData['archived'] = 0;
+
+        Product::create($productData);
     }
 
     public function update(ProductRequest $request, Product $product): void
@@ -49,9 +62,9 @@ class ProductService
         ]);
     }
 
-    public function destroy(Product $productCategory): void
+    public function destroy(Product $product): void
     {
-        $productCategory->delete();
+        $product->delete();
 
         session()->flash('alert', [
             'type' => 'success',

@@ -103,19 +103,7 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $productData = $request->all();
-
-        if ($request->hasFile('image_src')) {
-            $image = $request->file('image_src');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-
-            $path = $image->storeAs('products', $filename, 'public');
-
-            $productData['image_src'] = $path;
-        }
-        $productData['archived'] = 0;
-
-        Product::create($productData);
+        $this->productService->store($request);
 
         $request->session()->flash('status', 'Produkt został dodany!');
 
@@ -124,7 +112,7 @@ class ProductController extends Controller
 
     public function delete(Product $product)
     {
-        Product::destroy($product);
+        $this->productService->destroy($product);
 
         return redirect()->back()->with('success', 'Produkt usunięto pomyślnie');
     }
