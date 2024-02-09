@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/logowanie', function () {
     return view('login');
-});
+})->name('login.form');
 
 Route::get('/rejestracja', function () {
     return view('register');
@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
             Route::get('/', [BrandController::class, 'index'])->name('brands');
             Route::post('/dodaj', [BrandController::class, 'store'])->name('brands.create');
         });
+
         //CATEGORY ADMIN
         Route::group(['prefix' => 'kategorie'], function () {
             Route::get('/', [CategoryController::class, 'index'])->name('categories');

@@ -84,9 +84,9 @@
         </div>
     </div>
 </nav>
-
+<div style="min-height: 100vh">
 @yield('content')
-
+</div>
 <footer class="footer mt-5 bg-dark text-white text-center py-3">
     <div class="container">
         <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
