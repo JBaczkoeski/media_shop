@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
 
     <title>Elektroniczny Sklep</title>
 </head>
@@ -84,9 +84,7 @@
         </div>
     </div>
 </nav>
-<div style="min-height: 100vh">
 @yield('content')
-</div>
 <footer class="footer mt-5 bg-dark text-white text-center py-3">
     <div class="container">
         <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>

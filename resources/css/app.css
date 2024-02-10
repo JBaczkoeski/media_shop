@@ -5,6 +5,7 @@
     -webkit-line-clamp: 2;
 }
 
-.window-size {
-    min-height: 100vh;
+.test{
+    color: red;
+    font-size: 700px;
 }

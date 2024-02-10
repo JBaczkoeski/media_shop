@@ -5,3 +5,172 @@
     -webkit-line-clamp: 2;
 }
 
+.promo-banner {
+    border-radius: 24px;
+    border: 6px solid black;
+}
+
+.promo-banner .title {
+    border-radius: 12px;
+    background-color: #ffc107;
+    margin-top: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.promo-banner .promo-image {
+    margin-top: -5px;
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.promo-banner .promo-name {
+    text-align: center;
+    font-size: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 15px;
+}
+
+.promo-banner .promo-price {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 55px;
+    font-weight: bold;
+    color: #db3545;
+}
+
+.promo-banner .promo-information {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.promo-banner .promo-button {
+    background-color: #ffc107;
+    font-weight: bold;
+    width: 350px;
+    height: 75px;
+    margin-top: 50px;
+    border-radius: 24px;
+    font-size: 30px;
+    padding-top: 12px;
+}
+
+.promo-image {
+    width: 1050px;
+    height: 700px;
+    border-radius: 24px;
+}
+
+.home-news .title {
+    padding-left: 55px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.home-news .image {
+    width: 300px;
+    height: 300px;
+}
+
+.home-news .product-title {
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.home-news .price {
+    text-align: center;
+    font-size: 45px;
+    font-weight: bold;
+    color: #db3545;
+}
+
+.login {
+    border: 5px solid #a2a2a2;
+    border-radius: 24px;
+    margin-bottom: 26%;
+    margin-top: 142px;
+}
+
+.login .title {
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.login .button {
+    background-color: #ffc107;
+    font-size: 20px;
+    font-weight: bold;
+    width: 250px;
+    height: 60px;
+    margin-bottom: 100px;
+    border-radius: 12px;
+}
+
+.login .information {
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.login .information-title {
+    font-size: 30px;
+    text-align: center;
+}
+
+.login .list {
+    text-align: start;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    margin-top: 24px;
+}
+
+.login .list .item {
+    font-size: 22px;
+}
+
+.login .register{
+    align-items: center;
+}
+
+.login .register-button{
+    background-color: #ffc107;
+    font-size: 20px;
+    font-weight: bold;
+    width: 250px;
+    height: 60px;
+    margin-top: 40px;
+    margin-bottom: 5%;
+    padding-top: 10px;
+    border-radius: 12px;
+}
+
+.register{
+    border: 5px solid #a2a2a2;
+    margin-top: 10%;
+    border-radius: 24px;
+    margin-bottom: 14%;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.register .title{
+    font-size: 47px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}

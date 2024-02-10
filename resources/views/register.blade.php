@@ -1,10 +1,10 @@
 @extends('layout.user')
 @section('content')
-    <div class="container col-10 mt-5">
-        <div class="row d-flex justify-content-center">
+    <div class="container-fluid mt-5">
+        <div class="row">
             <div class="container col-6">
-                <div class="row border pb-3 border-2 d-flex justify-content-center">
-                    <div class="container col-12 mt-5 pt-4 h3 text-center">
+                <div class="row register justify-content-center">
+                    <div class="container col-12 title">
                         Załóż konto
                     </div>
                     <form method="post" action="{{ route('register') }}" class="form-group col-7 row text-center">
