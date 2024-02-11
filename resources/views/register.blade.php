@@ -53,18 +53,22 @@
                         <div class="container col-12 h2 text-center mt-5 pt-2">
                             Ciesz się następującymi korzyściami:
                         </div>
-                        <ul class="list-group text-start col-12 my-5 ms-5">
-                            <ol class="my-3 fw-bold"><i class="fa-solid fa-check fa-2xl me-3"
-                                                        style="color: #3ccd3f;"></i>Szybki proces zamawiania
+                        <ul class="list-group col-12 register-list">
+                            <ol class="my-3 item">
+                                <i class="fa-solid fa-check fa-2xl me-3" style="color: #3ccd3f;"></i>
+                                Szybki proces zamawiania
                             </ol>
-                            <ol class="my-2 fw-bold"><i class="fa-solid fa-check fa-2xl me-3"
-                                                        style="color: #3ccd3f;"></i>Pełna historia wszystkich zamówień
+                            <ol class="my-2 item">
+                                <i class="fa-solid fa-check fa-2xl me-3" style="color: #3ccd3f;"></i>
+                                Pełna historia wszystkich zamówień
                             </ol>
-                            <ol class="my-3 fw-bold"><i class="fa-solid fa-check fa-2xl me-3"
-                                                        style="color: #3ccd3f;"></i>Specjalne kody rabatowe
+                            <ol class="my-3 item">
+                                <i class="fa-solid fa-check fa-2xl me-3" style="color: #3ccd3f;"></i>
+                                Specjalne kody rabatowe
                             </ol>
-                            <ol class="my-2 fw-bold"><i class="fa-solid fa-check fa-2xl me-3"
-                                                        style="color: #3ccd3f;"></i>Dostęp do unikalnych promocji
+                            <ol class="my-2 item">
+                                <i class="fa-solid fa-check fa-2xl me-3" style="color: #3ccd3f;"></i>
+                                Dostęp do unikalnych promocji
                             </ol>
                         </ul>
                     </div>
