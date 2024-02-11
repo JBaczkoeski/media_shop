@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Province','provinces_id');
     }
+
+    public function cart()
+    {
+        return $this->hasOne('App\Models\Cart', 'user_id');
+    }
 }

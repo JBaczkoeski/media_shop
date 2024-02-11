@@ -22,7 +22,6 @@
     margin-top: -5px;
     width: 500px;
     height: 500px;
-    object-fit: cover;
 }
 
 .promo-banner .promo-name {
@@ -322,10 +321,19 @@
 }
 
 .navbar-color{
-    background-color: #02474d;
+    background-color: #333333;
     font-weight: bold;
 }
 
 .sidebar{
-    background-color: #036668;
+    background-color: #444444;
+}
+
+#myElement {
+    position: absolute;
+    bottom: 0;
+}
+
+#myElement.static {
+    position: static;
 }

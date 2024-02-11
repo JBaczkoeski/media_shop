@@ -57,10 +57,18 @@
     @endif
 </div>
 @yield('content')
-<footer class="footer navbar-color py-3 text-center footer-sticky text-white">
+<footer id="myElement" class="footer navbar-color py-3 text-center footer-sticky text-white">
     <div class="container">
         <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
     </div>
 </footer>
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var element = document.getElementById('myElement');
+        if (document.body.scrollHeight > window.innerHeight) {
+            element.classList.add('static');
+        }
+    });
+</script>

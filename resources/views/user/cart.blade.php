@@ -26,7 +26,7 @@
             <h4 class="sum">Łączna kwota: {{ $total }}</h4>
         </div>
         <div class="d-flex justify-content-end my-5">
-            <a href="/checkout" class="btn button">Przejdź do kasy</a>
+            <a href="/koszyk/płatność" class="btn button">Przejdź do kasy</a>
         </div>
         <h3 class="delivery-title">Opcje dostawy</h3>
         <table class="table table-striped">

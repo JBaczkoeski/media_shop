@@ -20,7 +20,7 @@
     <title>Elektroniczny Sklep</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+<nav class="navbar navbar-expand-lg navbar-color text-white">
     <div class="container-fluid">
         <a class="navbar-brand" href="/" style="color: #EFB70A">Elektroniczny Sklep</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -84,8 +84,23 @@
         </div>
     </div>
 </nav>
+<div class="d-flex justify-content-end">
+    @if ($message = Session::get('success'))
+        <div class="alert col-3 alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ $message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if ($message = Session::get('error'))
+        <div class="alert col-3 alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ $message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+</div>
 @yield('content')
-<footer class="footer mt-5 bg-dark text-white text-center py-3">
+<footer class="footer mt-5 navbar-color text-white text-center py-3">
     <div class="container">
         <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
     </div>

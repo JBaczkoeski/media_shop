@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\User\ProvinceController;
 use App\Http\Controllers\Admin\Warechouse\WarehouseController;
 use App\Http\Controllers\Auth\AuthorizationController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/logowanie', function () {
     return view('login');
@@ -46,7 +47,9 @@ Route::get('/produkty/wyszukaj', [ProductController::class, 'search'])->name('us
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/koszyk/dodaj/{product}', [CartController::class, 'store'])->name('cart.store');
     Route::get('/koszyk', [CartController::class, 'index'])->name('cart');
-
+    Route::get('/koszyk/płatność', [PaymentController::class, 'handlePayment'])->name('make.payment');
+    Route::get('cancel-payment', [PaymentController::class, 'paymentCancel'])->name('cancel.payment');
+    Route::get('payment-success', [PaymentController::class, 'paymentSuccess'])->name('success.payment');
 });
 //Admin
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function () {
@@ -109,4 +112,3 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
         Route::post('/dodawanie/dodaj', [WarehouseController::class, 'store'])->name('warehouses.store');
     });
 });
-
