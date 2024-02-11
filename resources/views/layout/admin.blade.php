@@ -12,12 +12,13 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
 
     <title>Elektroniczny Sklep</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+<nav class="navbar navbar-expand-lg navbar-color">
     <div class="container-fluid">
         <a class="navbar-brand" href="/" style="color: #EFB70A">Administrator</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -55,11 +56,8 @@
         </div>
     @endif
 </div>
-<div style="min-height: 80vh">
-    @yield('content')
-</div>
-
-<footer class="footer mt-5 bg-dark text-white text-center py-3">
+@yield('content')
+<footer class="footer navbar-color py-3 text-center footer-sticky text-white">
     <div class="container">
         <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
     </div>

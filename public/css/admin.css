@@ -1,0 +1,39 @@
+.main-icon{
+    color: #ffc107;
+}
+
+.padding{
+    margin-top: 2%;
+}
+
+.product-search{
+    margin-top: 32px;
+}
+
+.product-add{
+    margin-top: 5%;
+}
+
+.product-add .box{
+    border: 5px solid #a2a2a2;
+    border-radius: 24px;
+    margin-bottom: 8vh;
+}
+
+.product-add .title{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+
+.product-add .button{
+    background-color: #ffc107;
+    font-size: 20px;
+    font-weight: bold;
+    width: 250px;
+    height: 60px;
+    margin-bottom: 2%;
+    border-radius: 12px;
+}

@@ -5,8 +5,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
-            <div class="col-12 mt-3">
-                <div class="container col-6">
+            <div class="col-12">
+                <div class="container col-6 product-search">
                     <input class="form-control" type="text" id="search" placeholder="Wyszukaj...">
                 </div>
                 <table class="table table-hover">
@@ -40,13 +40,12 @@
                                     </button>
                                 </form>
                                 <a href="/admin/produkty/produkt/edytuj/{{$product['id']}}" class="btn"
-                                   title="Edytuj"><i class="fa-solid fa-pen-to-square fa-xl"
-                                                     style="color: #EFB70A;"></i></a>
+                                   title="Edytuj"><i class="fa-solid fa-pen-to-square fa-xl main-icon"></i></a>
                                 <div style="display: inline-block;">
                                     <form action="/admin/produkty/zarchiwizuj/{{$product['id']}}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn" title="Zarchwizuj">
-                                            <i class="fa-solid fa-box-archive fa-xl" style="color: #EFB70A;"></i>
+                                            <i class="fa-solid fa-box-archive fa-xl main-icon"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -55,7 +54,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="container col-6">
+                <div class="container col-12 padding">
                     {{ $viewData['products']->links('pagination::bootstrap-5') }}
                 </div>
             </div>

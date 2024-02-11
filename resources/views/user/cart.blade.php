@@ -1,7 +1,7 @@
 @extends('layout.user')
 @section('content')
-    <div class="container my-5 py-1">
-        <h2 class="my-5">Twój koszyk</h2>
+    <div class="container cart">
+        <h2 class="title">Twój koszyk</h2>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -22,13 +22,13 @@
             @endforeach
             </tbody>
         </table>
-        <div class="d-flex justify-content-end mb-5">
-            <h4>Łączna kwota: {{ $total }}</h4>
+        <div class="d-flex justify-content-end">
+            <h4 class="sum">Łączna kwota: {{ $total }}</h4>
         </div>
         <div class="d-flex justify-content-end my-5">
-            <a href="/checkout" class="btn btn-primary">Przejdź do kasy</a>
+            <a href="/checkout" class="btn button">Przejdź do kasy</a>
         </div>
-        <h3 class="my-5">Opcje dostawy</h3>
+        <h3 class="delivery-title">Opcje dostawy</h3>
         <table class="table table-striped">
             <thead>
             <tr>

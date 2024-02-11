@@ -3,7 +3,7 @@
     @include('includes.adminProductsNavbar')
 @endsection
 @section('content')
-<div class="container-fluid mt-4">
+<div class="container-fluid brand">
     <div class="row">
         <div class="container col-6">
             <table class="table table-hover">

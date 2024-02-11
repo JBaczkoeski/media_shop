@@ -43,9 +43,11 @@ Route::post('/wyloguj', [AuthorizationController::class, 'logout'])->name('logou
 Route::get('/produkty', [ProductController::class, 'index'])->name('user.products');
 Route::get('/produkty/wyszukaj', [ProductController::class, 'search'])->name('user.products.search');
 
-Route::post('/koszyk/dodaj/{product}', [CartController::class, 'store'])->name('cart.store');
-Route::get('/koszyk', [CartController::class, 'index'])->name('cart');
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/koszyk/dodaj/{product}', [CartController::class, 'store'])->name('cart.store');
+    Route::get('/koszyk', [CartController::class, 'index'])->name('cart');
 
+});
 //Admin
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function () {
     Route::get('/', function () {

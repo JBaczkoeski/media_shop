@@ -36,6 +36,6 @@ class ProductFilterService
 
         $query->where('archived', 0);
 
-        return $query->paginate(10);
+        return $query->paginate(12);
     }
 }

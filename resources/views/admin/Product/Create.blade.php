@@ -3,10 +3,10 @@
     @include('includes.adminProductsNavbar')
 @endsection
 @section('content')
-    <div class="container-fluid mt-5">
+    <div class="container-fluid product-add">
         <div class="row d-flex justify-content-center">
-            <div class="container col-7 border border-4">
-                <div class="container col-12 h3 text-center my-3">
+            <div class="container col-7 box">
+                <div class="container col-12 title">
                     DODAJ NOWY PRODUKT
                 </div>
                 <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data">
@@ -67,7 +67,7 @@
                         @endif
                     </div>
                     <div class="form-group text-center my-3">
-                        <button type="submit" class="btn btn-lg btn-warning">Dodaj</button>
+                        <button type="submit" class="btn button">Dodaj</button>
                     </div>
                 </form>
             </div>
