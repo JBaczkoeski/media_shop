@@ -1,25 +1,24 @@
 @extends('layout.user')
 @section('content')
-    <div class="container-fluid mt-3">
+    <div class="container-fluid product">
         <div class="row">
             <div class="container col-2 pt-3">
-                <div class="container col-12 h5">
+                <div class="container col-12 product-info">
                     {{$viewData['category']['name'] ?? 'Wszystkie produkty'}} @if(isset($viewData['products']))({{$viewData['products']->total()}})@endif
                 </div>
                 <hr>
                 <div class="container">
                     <form method="GET" class="text-center">
                         <div class="form-group my-3">
-                            <label for="category">Sortowanie</label>
+                            <label class="filter" for="category">Sortowanie</label>
                             <select class="form-control" name="sort" id="sort">
                                 <option selected disabled>Sortowanie produktów</option>
                                 <option value="asc">Cena rosnąco</option>
                                 <option value="desc">Cena malejąco</option>
                             </select>
                         </div>
-                        <hr>
                         <div class="form-group my-3">
-                            <label for="category">Kategoria</label>
+                            <label class="filter" for="category">Kategoria</label>
                             <select class="form-control" name="category" id="category">
                                 <option disabled selected>Kategoria</option>
                                 @foreach($viewData['categories'] as $category)
@@ -28,7 +27,7 @@
                             </select>
                         </div>
                         <div class="form-group my-3">
-                            <label for="brand">Marka</label>
+                            <label class="filter" for="brand">Marka</label>
                             <select class="form-control" name="brand" id="brand">
                                 <option disabled selected>Marka</option>
                             @foreach($viewData['brands'] as $brand)
@@ -37,41 +36,41 @@
                             </select>
                         </div>
                         <div class="form-group my-3">
-                            <label for="price">Cena</label>
+                            <label class="filter" for="price">Cena</label>
                             <input type="number" value="{{ $viewData['min_price'] ?? '' }}" class="form-control my-2" name="min_price" id="min_price" placeholder="Od">
                             <input type="number" value="{{ $viewData['max_price'] ?? '' }}" class="form-control" name="max_price" id="max_price" placeholder="Do">
                         </div>
-                        <button type="submit" class="btn btn-primary">Sortuj</button>
+                        <button type="submit" class="btn filter-button">Sortuj</button>
                     </form>
                 </div>
             </div>
-            <div class="container col-9 pt-2">
+            <div class="container col-9">
                 <div class="container col-12">
                     <div class="row">
                         @foreach($viewData['products'] as $product)
-                            <div href="/produkty/produkt" class="container col-12 border border-1 px-4 py-3 my-1">
+                            <div class="container col-12 products">
                                 <div class="row">
-                                    <div class="container col-12 h4 text-center">
+                                    <div class="container col-12 title">
                                         {{ $product['name'] }}
                                     </div>
                                     <div class="container col-4">
-                                        <img class="img-fluid" src="{{Storage::url($product['image_src'])}}"
+                                        <img class="image" src="{{Storage::url($product['image_src'])}}"
                                              alt="produkt">
                                     </div>
-                                    <div class="container col-4 pt-5">
+                                    <div class="container col-4 description">
                                         {{ $product['description'] }}
                                     </div>
                                     <div class="container col-3">
-                                        <p class="text-center h1 text-danger">{{ $product['price'] }}</p>
+                                        <p class="text-center price">{{ $product['price'] }}</p>
                                         <hr>
-                                        <p>Dostępność online: Dostępny</p>
-                                        <p>Stacjonarnie: Wybierz sklep</p>
-                                        <p>Czas wysyłki: 1-2 dni robocze</p>
+                                        <p class="information">Dostępność online: Dostępny</p>
+                                        <p class="information">Stacjonarnie: Wybierz sklep</p>
+                                        <p class="information">Czas wysyłki: 1-2 dni robocze</p>
                                         <hr>
-                                        <a href="#" class="btn btn-lg btn-success my-3">Sprawdź produkt</a>
+                                        <a href="#" class="btn show-button">Sprawdź produkt</a>
                                         <form method="post" action="/koszyk/dodaj/{{$product['id']}}">
                                             @csrf
-                                        <button class="btn btn-lg btn-warning">Dodaj do koszyka</button>
+                                        <button class="btn add-cart">Dodaj do koszyka</button>
                                         </form>
                                     </div>
                                 </div>

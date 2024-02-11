@@ -42,7 +42,7 @@
                             @endif
                         </div>
                         <div class="container mb-5">
-                            <button class="btn btn-lg btn-warning">Załóż konto</button>
+                            <button class="btn button">Załóż konto</button>
                         </div>
                     </form>
                 </div>
