@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Services;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductFilterService
 {

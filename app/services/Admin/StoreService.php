@@ -2,7 +2,6 @@
 
 namespace App\services\Admin;
 
-use App\Http\Requests\EmployeeRequest;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\StoreRequest;
 use App\Models\Product;

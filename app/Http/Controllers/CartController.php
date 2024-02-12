@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Cart_details;
-use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,18 +24,19 @@ class CartController extends Controller
 
             $total = 0;
 
-            foreach ($cart_products as $product){
+            foreach ($cart_products as $product) {
                 $product_detail = Product::find($product->product_id);
                 $total += $product->quantity * $product_detail->price;
                 $detailed_cart_products[] = [
                     'product_detail' => $product_detail,
-                    'quantity' => $product->quantity
+                    'quantity' => $product->quantity,
                 ];
             }
-        }else{
+        } else {
             return redirect()->back();
         }
-        return view('user.cart',['cart_products' => $detailed_cart_products,'total' => $total]);
+
+        return view('user.cart', ['cart_products' => $detailed_cart_products, 'total' => $total]);
     }
 
     /**
@@ -47,7 +47,6 @@ class CartController extends Controller
         $user = Auth::id();
 
         $exist_cart = Cart::where('user_id', '=', $user)->first();
-
 
         if ($exist_cart == null) {
             $cart = new Cart();
@@ -66,9 +65,10 @@ class CartController extends Controller
             $cart_details->quantity = 1;
             $cart_details->save();
         } else {
-            ++$exist_product->quantity;
+            $exist_product->quantity++;
             $exist_product->save();
         }
+
         return redirect()->back();
     }
 

@@ -5,7 +5,6 @@ namespace App\services\Admin;
 use App\Http\Requests\EmployeeRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use App\Models\User;
 use App\Models\Warehouse;
 
 class WarehouseService
@@ -27,6 +26,6 @@ class WarehouseService
 
     public function destroy(Product $product): void
     {
-       //
+        //
     }
 }

@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -61,9 +61,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Warehouse');
     }
+
     public function province()
     {
-        return $this->belongsTo('App\Models\Province','provinces_id');
+        return $this->belongsTo('App\Models\Province', 'provinces_id');
     }
 
     public function cart()

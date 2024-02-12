@@ -18,7 +18,6 @@ class ProductService
         $this->imageService = $imageService;
     }
 
-
     public function index($products, $min_price, $max_price): array
     {
         $category_name = null;

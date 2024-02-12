@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BrandsRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
@@ -16,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
     protected $productFilterService;
+
     protected $productService;
 
     public function __construct(ProductFilterService $productFilterService, ProductService $productService)
@@ -35,7 +35,6 @@ class ProductController extends Controller
             return view('user.products', ['viewData' => $viewData])->withInput($request->all());
         }
     }
-
 
     public function search(Request $request)
     {

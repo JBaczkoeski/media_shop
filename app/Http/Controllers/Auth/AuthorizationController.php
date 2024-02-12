@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthorizationController extends Controller
 {
-    public function login(LoginRequest $request){
+    public function login(LoginRequest $request)
+    {
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
             if (auth()->user()->hasRole('admin')) {
                 return redirect('/admin');
             }
+
             return redirect()->intended('/');
         }
 
@@ -25,7 +27,8 @@ class AuthorizationController extends Controller
         ]);
     }
 
-    public function register(RegisterRequest $request){
+    public function register(RegisterRequest $request)
+    {
 
         $user = new User();
         $user->first_name = $request->first_name;
@@ -39,7 +42,8 @@ class AuthorizationController extends Controller
         return view('home');
     }
 
-    public function logout(){
+    public function logout()
+    {
 
         Auth()->logout();
 

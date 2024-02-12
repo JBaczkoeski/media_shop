@@ -4,8 +4,6 @@ namespace App\services\Admin;
 
 use App\Http\Requests\EmployeeRequest;
 use App\Http\Requests\ProductRequest;
-use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 
@@ -13,7 +11,7 @@ class EmployeeService
 {
     public function index()
     {
-        return User::role(['shop_worker', 'warehouse_worker', 'shop_manager'])->with('province','store','warehouse')->get();
+        return User::role(['shop_worker', 'warehouse_worker', 'shop_manager'])->with('province', 'store', 'warehouse')->get();
     }
 
     public function store(EmployeeRequest $request)
@@ -36,6 +34,6 @@ class EmployeeService
 
     public function destroy(Product $product): void
     {
-       //
+        //
     }
 }

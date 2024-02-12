@@ -39,7 +39,7 @@ class EmployeeRequest extends FormRequest
             'postal_code' => 'required|string|max:255',
             'provinces_id' => 'required',
             'position' => 'required',
-            'store_id' => 'integer'
+            'store_id' => 'integer',
         ];
     }
 }

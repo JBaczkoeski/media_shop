@@ -22,11 +22,11 @@ class WarehouseController extends Controller
         return view('admin.Warehouse.Index', ['warehouses' => $this->warehouseService->index()]);
     }
 
-     public function create()
-     {
+    public function create()
+    {
         $provinces = Province::all();
 
-        return view('admin.Warehouse.Create',['provinces' => $provinces]);
+        return view('admin.Warehouse.Create', ['provinces' => $provinces]);
     }
 
     public function store(Request $request)

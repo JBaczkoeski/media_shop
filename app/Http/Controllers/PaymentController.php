@@ -24,10 +24,10 @@ class PaymentController extends Controller
         $paypalToken = $provider->getAccessToken();
 
         $response = $provider->createOrder([
-            "intent" => "CAPTURE",
-            "application_context" => [
-                "return_url" => route('success.payment'),
-                "cancel_url" => route('cancel.payment'),
+            'intent' => 'CAPTURE',
+            'application_context' => [
+                'return_url' => route('success.payment'),
+                'cancel_url' => route('cancel.payment'),
             ],
             'purchase_units' => [
                 [
@@ -39,12 +39,12 @@ class PaymentController extends Controller
                             'item_total' => [
                                 'currency_code' => 'PLN',
                                 'value' => $cart[1],
-                            ]
-                        ]
+                            ],
+                        ],
                     ],
                     'items' => $cart[0],
-                ]
-            ]
+                ],
+            ],
         ]);
 
         if (isset($response['id']) && $response['id'] != null) {
@@ -53,6 +53,7 @@ class PaymentController extends Controller
                     return redirect()->away($links['href']);
                 }
             }
+
             return redirect()
                 ->route('cancel.payment')
                 ->with('error', 'Coś posżło nie tak.');
@@ -66,6 +67,7 @@ class PaymentController extends Controller
     public function paymentCancel(Request $request)
     {
         $message = $request->query('message', 'Transakcja została anulowana.');
+
         return redirect()
             ->route('create.payment')
             ->with('error', $message);
@@ -79,6 +81,7 @@ class PaymentController extends Controller
         $response = $provider->capturePaymentOrder($request['token']);
         if (isset($response['status']) && $response['status'] === 'COMPLETED') {
             $this->paymentService->clearCart();
+
             return redirect()
                 ->route('home')
                 ->with('success', 'Tranzakcja przebiegła pomyślnie.');

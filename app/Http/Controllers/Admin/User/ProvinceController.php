@@ -18,7 +18,7 @@ class ProvinceController extends Controller
 
     public function index()
     {
-        return view('admin.User.Province.Index',['provinces' => Province::all()]);
+        return view('admin.User.Province.Index', ['provinces' => Province::all()]);
     }
 
     public function store(ProvinceRequest $request)
