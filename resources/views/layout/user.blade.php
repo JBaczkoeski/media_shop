@@ -46,7 +46,7 @@
             <form method="get" action=" {{ route('user.products.search') }}" class="d-flex input-group w-50 mx-auto">
                 @csrf
                 <input name="query" type="search" class="form-control" placeholder="Wyszukaj" aria-label="Search"/>
-                <button class="btn btn-outline-warning" type="button">
+                <button class="btn btn-outline-warning" type="submit">
                     Szukaj
                 </button>
             </form>
@@ -78,7 +78,7 @@
                     </li>
                 @endguest
                 <li class="nav-item">
-                    <a href="/koszyk" class="btn"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #EFB70A;"></i></a>
+                    <a href="/koszyk" class="btn"><i class="fa-solid fa-cart-shopping fa-2xl main-icon"></i></a>
                 </li>
             </ul>
         </div>

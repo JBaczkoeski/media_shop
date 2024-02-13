@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -38,5 +40,17 @@ class ProductFilterService
         $query->where('archived', 0);
 
         return $query->paginate(12);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+
+        $viewData['products'] = Product::where('name', 'like', "%{$query}%")->paginate(10);
+
+        $viewData['categories'] = Category::all();
+        $viewData['brands'] = Brand::all();
+
+        return $viewData;
     }
 }

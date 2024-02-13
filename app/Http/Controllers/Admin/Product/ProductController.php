@@ -38,17 +38,13 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->get('query');
-        $products = Product::where('name', 'like', "%{$query}%")->paginate(10);
+        $viewData = $this->productFilterService->search($request);
 
-        $categories = Category::all();
-        $brands = Brand::all();
-
-        if (Auth::user()->hasRole('admin')) {
-            return view('admin.Product.Index', ['products' => $products])->render();
-        } elseif (Auth::user()->hasRole('user')) {
-            return view('user.products', ['products' => $products, 'categories' => $categories, 'brands' => $brands]);
+        if (Auth::check() && Auth::user()->hasRole('admin')) {
+            return view('admin.Product.Index', ['products' => $viewData])->render();
         }
+
+        return view('user.products', ['viewData' => $viewData]);
     }
 
     public function edit(Product $product)

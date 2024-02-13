@@ -10,7 +10,7 @@
                     <div class="container col-6 promo-banner">
                         <div class="row">
                             <div class="container col-6">
-                                <div class="container col-12 fw-bold h1 text-center title">
+                                <div class="container col-12 title">
                                     HIT DNIA !
                                 </div>
                                 <div class="container col-12">
