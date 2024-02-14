@@ -9,8 +9,9 @@ use App\Http\Controllers\Admin\Store\StoreController;
 use App\Http\Controllers\Admin\User\ProvinceController;
 use App\Http\Controllers\Admin\Warechouse\WarehouseController;
 use App\Http\Controllers\Auth\AuthorizationController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\OrderController;
+use App\Http\Controllers\User\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/koszyk/dodaj/{product}', [CartController::class, 'store'])->name('cart.store');
     Route::get('/koszyk', [CartController::class, 'index'])->name('cart');
     Route::get('/koszyk/płatność', [PaymentController::class, 'handlePayment'])->name('make.payment');
+
+    Route::get('/zamowienia', [OrderController::class, 'index'])->name('orders');
+
     Route::get('cancel-payment', [PaymentController::class, 'paymentCancel'])->name('cancel.payment');
     Route::get('payment-success', [PaymentController::class, 'paymentSuccess'])->name('success.payment');
 });

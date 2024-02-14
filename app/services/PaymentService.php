@@ -20,6 +20,7 @@ class PaymentService
             $product = Product::find($cart_detail['product_id']);
 
             $buy_products[] = [
+                'id' => $product['id'],
                 'name' => $product['name'],
                 'quantity' => $cart_detail['quantity'],
                 'unit_amount' => [
@@ -31,7 +32,7 @@ class PaymentService
             $cart_sum += $product['price'] * $cart_detail['quantity'];
         }
 
-        return [$buy_products, $cart_sum];
+        return ['buy_products' => $buy_products,'cart_sum' => $cart_sum];
     }
 
     public function clearCart()

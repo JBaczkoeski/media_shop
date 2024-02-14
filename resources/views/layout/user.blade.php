@@ -58,7 +58,7 @@
                             Konto
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Zamówienia</a></li>
+                            <li><a class="dropdown-item" href="/zamowienia">Zamówienia</a></li>
                             <li><a class="dropdown-item" href="#">Moje dane</a></li>
                             <li><a class="dropdown-item" href="#">Opinie</a></li>
                             <li><a class="dropdown-item" href="#">Zwroty</a></li>
@@ -100,7 +100,7 @@
     @endif
 </div>
 @yield('content')
-<footer class="footer mt-5 navbar-color text-white text-center py-3">
+<footer id="myElement" class="footer navbar-color py-3 text-center footer-sticky text-white">
     <div class="container">
         <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
     </div>
@@ -118,6 +118,13 @@
                 location.reload();
             }
         });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var element = document.getElementById('myElement');
+        if (document.body.scrollHeight > window.innerHeight) {
+            element.classList.add('static');
+        }
     });
 </script>
 </body>

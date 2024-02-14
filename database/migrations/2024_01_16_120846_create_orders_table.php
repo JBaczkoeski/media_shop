@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->decimal('total_price', 8, 2);
+            $table->string('serial_number')->unique();
             $table->string('status');
             $table->timestamps();
 

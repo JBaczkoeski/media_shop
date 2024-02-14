@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
+use App\services\OrderService;
 use App\services\PaymentService;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -9,10 +11,12 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 class PaymentController extends Controller
 {
     protected $paymentService;
+    protected $orderService;
 
-    public function __construct(PaymentService $paymentService)
+    public function __construct(PaymentService $paymentService, OrderService $orderService)
     {
         $this->paymentService = $paymentService;
+        $this->orderService = $orderService;
     }
 
     public function handlePayment()
@@ -34,15 +38,15 @@ class PaymentController extends Controller
                     'description' => 'Zakup przedmiotów z sklepu',
                     'amount' => [
                         'currency_code' => 'PLN',
-                        'value' => $cart[1],
+                        'value' => $cart['cart_sum'],
                         'breakdown' => [
                             'item_total' => [
                                 'currency_code' => 'PLN',
-                                'value' => $cart[1],
+                                'value' => $cart['cart_sum'],
                             ],
                         ],
                     ],
-                    'items' => $cart[0],
+                    'items' => $cart['buy_products'],
                 ],
             ],
         ]);
@@ -80,6 +84,11 @@ class PaymentController extends Controller
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
         if (isset($response['status']) && $response['status'] === 'COMPLETED') {
+            $cart = $this->paymentService->orderInfo();
+
+            $this->orderService->store($cart);
+            $this->orderService->mail($cart);
+
             $this->paymentService->clearCart();
 
             return redirect()
