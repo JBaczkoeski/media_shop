@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-            crossorigin="anonymous"></script>
+
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+
     <script src="https://kit.fontawesome.com/1e48838dc2.js" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -20,68 +17,106 @@
     <title>Elektroniczny Sklep</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-color text-white">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/" style="color: #EFB70A">Elektroniczny Sklep</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-5">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Produkty
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/produkty">Wszystkie</a></li>
-                        @foreach(\App\Models\Category::all() as $category)
-                            <li><a class="dropdown-item sort" data-sort="{{$category['id']}}">{{$category['name']}}</a></li>
-
-                        @endforeach
-                    </ul>
-                </li>
-            </ul>
-            <form method="get" action=" {{ route('user.products.search') }}" class="d-flex input-group w-50 mx-auto">
-                @csrf
-                <input name="query" type="search" class="form-control" placeholder="Wyszukaj" aria-label="Search"/>
-                <button class="btn btn-outline-warning" type="submit">
-                    Szukaj
+<nav class="bg-zinc-800">
+    <div class="mx-auto px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                <button type="button"
+                        class="ms-dropdown relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                         aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                    </svg>
+                    <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                         aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
                 </button>
-            </form>
-            <ul class="navbar-nav ms-auto me-3">
-                @auth()
-                    <li class="nav-item dropdown me-4">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Konto
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="/zamowienia">Zamówienia</a></li>
-                            <li><a class="dropdown-item" href="#">Moje dane</a></li>
-                            <li><a class="dropdown-item" href="#">Opinie</a></li>
-                            <li><a class="dropdown-item" href="#">Zwroty</a></li>
-                            <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Wyloguj</a>
-                            </li>
+            </div>
+            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div class="flex flex-shrink-0 items-center text-2xl text-white">
+                    <a href="/">
+                        MEDIA SHOP
+                    </a>
+                </div>
+                <div class="hidden sm:ml-6 sm:block">
+                    <div class="flex space-x-4">
+                        <a href="#"
+                           class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Produkty</a>
+                    </div>
+                </div>
+            </div>
+            @auth()
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <div class="relative ml-3">
+                        <div>
+                            <button type="button"
+                                    class="dropdown-button text-white rounded-md px-3 py-2 text-sm font-medium"
+                                    id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                Jakub
+                            </button>
+                        </div>
+                        <div
+                            class="dropdown-menu absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                               id="user-menu-item-0">Zamówienia</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                               id="user-menu-item-0">Moje dane</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                               id="user-menu-item-0">Opinie</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                               id="user-menu-item-1">Zwroty</a>
+                            <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700"
+                               role="menuitem" tabindex="-1"
+                               id="user-menu-item-2"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Wyloguj
+                                się</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                        </ul>
-                    </li>
-                @endauth
-                @guest()
-                    <li class="nav-item d-flex align-items-center me-4">
-                        <a class="btn nav-link me-2 text-white" href="/logowanie">Zaloguj się</a>
-                        <a class="btn nav-link text-white" href="/rejestracja">Zarejestruj się</a>
-                    </li>
-                @endguest
-                <li class="nav-item">
-                    <a href="/koszyk" class="btn"><i class="fa-solid fa-cart-shopping fa-2xl main-icon"></i></a>
-                </li>
-            </ul>
+                        </div>
+                    </div>
+                    <a href="#" class="relative bg-zinc-800 p-1 text-gray-400 hover:text-white">
+                        <i class="fa-solid fa-cart-shopping fa-2xl main-icon"></i>
+                    </a>
+                </div>
+            @endauth
+            <div class="hidden sm:ml-6 sm:block">
+                <div class="flex">
+                    <a href="/logowanie"
+                       class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Zaloguj
+                        się</a>
+                    <a href="/rejestracja"
+                       class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Zarejestruj
+                        się</a>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="sm:hidden mobile-menu">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+            <a href="#"
+               class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">
+                Produkty
+            </a>
+        </div>
+        @guest()
+            <div class="space-y-1 px-2 pb-3 pt-2">
+                <a href="/logowanie"
+                   class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">
+                    Zaloguj się
+                </a>
+                <a href="/rejestracja"
+                   class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">
+                    Zarejestruj się
+                </a>
+            </div>
+        @endguest
     </div>
 </nav>
 <div class="d-flex justify-content-end">
@@ -100,7 +135,7 @@
     @endif
 </div>
 @yield('content')
-<footer id="myElement" class="footer navbar-color py-3 text-center footer-sticky text-white">
+<footer id="footer" class="bg-zinc-800 py-3 text-center footer-sticky text-white">
     <div class="container">
         <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
     </div>
@@ -120,8 +155,8 @@
         });
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var element = document.getElementById('myElement');
+    document.addEventListener('DOMContentLoaded', function () {
+        var element = document.getElementById('footer');
         if (document.body.scrollHeight > window.innerHeight) {
             element.classList.add('static');
         }
