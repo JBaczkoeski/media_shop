@@ -1,12 +1,12 @@
 @extends('layout.admin')
 @section('side_bar')
-    @include('includes.adminProductsNavbar')
+    @include('includes.adminWarehousesNavbar')
 @endsection
 @section('content')
-    <div class="container-fluid mt-5">
-        <div class="row d-flex justify-content-center">
-            <div class="container col-7 border border-4">
-                <div class="container col-12 h3 text-center my-3">
+    <div class="w-full flex justify-center items-start min-h-screen py-10">
+        <div class="w-full flex justify-center items-start min-h-screen">
+            <div class="w-1/2 border-4 rounded-3xl p-4 my-5">
+                <div class="text-center text-2xl font-bold mb-10">
                     DODAJ NOWY MAGAZYN
                 </div>
                 <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data">
