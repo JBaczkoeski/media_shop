@@ -15,3 +15,13 @@
     bottom: 0;
     width: 100%;
 }
+
+#footer.static {
+    position: static;
+}
+
+@media (min-width: 768px) {
+    .margin-login {
+        margin-top: -66px;
+    }
+}

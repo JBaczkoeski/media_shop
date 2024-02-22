@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Admin;
+namespace App\services\Admin;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\services\ImageService;
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image;
 
 class ProductService
 {
@@ -43,7 +44,18 @@ class ProductService
         $productData = $request->all();
 
         if (isset($productData['image_src']) && $productData['image_src'] instanceof UploadedFile) {
-            $productData['image_src'] = $this->imageService->handleUpload($productData['image_src'], 'product');
+            $image = $productData['image_src'];
+
+            $imageFile = Image::make($image->getRealPath());
+
+            $name = time() . '.webp';
+            $path = storage_path('app/public/products');
+
+            $imageFile->resize(460, 400, function ($constrain){
+                $constrain->aspectRatio();
+            })->save($path . '/' . $name);
+
+            $productData['image_src'] = $name;
         }
 
         $productData['archived'] = 0;

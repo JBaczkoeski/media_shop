@@ -7,8 +7,8 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
-use App\Services\Admin\ProductService;
-use App\Services\ProductFilterService;
+use App\services\Admin\ProductService;
+use App\services\ProductFilterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

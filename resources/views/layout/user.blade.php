@@ -45,7 +45,7 @@
                 </div>
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
-                        <a href="#"
+                        <a href="/produkty"
                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Produkty</a>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             </form>
                         </div>
                     </div>
-                    <a href="#" class="relative bg-zinc-800 p-1 text-gray-400 hover:text-white">
+                    <a href="/koszyk" class="relative bg-zinc-800 p-1 text-gray-400 hover:text-white">
                         <i class="fa-solid fa-cart-shopping fa-2xl main-icon"></i>
                     </a>
                 </div>
@@ -119,6 +119,7 @@
         @endguest
     </div>
 </nav>
+@if (Session::get('success') || Session::get('error'))
 <div class="d-flex justify-content-end">
     @if ($message = Session::get('success'))
         <div class="alert col-3 alert-success alert-dismissible fade show" role="alert">
@@ -134,11 +135,10 @@
         </div>
     @endif
 </div>
+@endif
 @yield('content')
 <footer id="footer" class="bg-zinc-800 py-3 text-center footer-sticky text-white">
-    <div class="container">
-        <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
-    </div>
+    <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
 </footer>
 <script>
     $(document).on('click', '.sort', function () {
