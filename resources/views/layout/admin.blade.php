@@ -51,7 +51,7 @@
                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-1 py-2 text-sm font-medium">
                             Regiony
                         </a>
-                        <a href="/admin/uzytkownicy"
+                        <a href="/admin/pracownicy"
                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-1 py-2 text-sm font-medium">
                             Pracownicy
                         </a>
@@ -83,22 +83,59 @@
                         <div
                             class="dropdown-menu absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                               id="user-menu-item-0">Zamówienia</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                               id="user-menu-item-0">Moje dane</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                               id="user-menu-item-0">Opinie</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                               id="user-menu-item-1">Zwroty</a>
-                            <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                               id="user-menu-item-2" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Wyloguj się</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-700"
+                               role="menuitem"
+                               tabindex="-1"
+                               id="user-menu-item-0"
+                            >
+                                Zamówienia
+                            </a>
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-700"
+                               role="menuitem"
+                               tabindex="-1"
+                               id="user-menu-item-0"
+                            >
+                                Moje dane
+                            </a>
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-700"
+                               role="menuitem"
+                               tabindex="-1"
+                               id="user-menu-item-0"
+                            >
+                                Opinie
+                            </a>
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-700"
+                               role="menuitem"
+                               tabindex="-1"
+                               id="user-menu-item-1"
+                            >
+                                Zwroty
+                            </a>
+                            <a href="{{ route('logout') }}"
+                               class="block px-4 py-2 text-sm text-gray-700"
+                               role="menuitem"
+                               tabindex="-1"
+                               id="user-menu-item-2"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            >
+                                Wyloguj się
+                            </a>
+                            <form id="logout-form"
+                                  action="{{ route('logout') }}"
+                                  method="POST"
+                                  style="display: none;"
+                            >
                                 @csrf
                             </form>
                         </div>
                     </div>
-                    <a href="#" class="relative bg-zinc-800 p-1 text-gray-400 hover:text-white">
+                    <a href="#"
+                       class="relative bg-zinc-800 p-1 text-gray-400 hover:text-white"
+                    >
                         <i class="fa-solid fa-cart-shopping fa-2xl main-icon"></i>
                     </a>
                 </div>
@@ -143,18 +180,5 @@
     @endif
 </div>
 @yield('content')
-<footer id="footer" class="bg-zinc-800 py-3 text-center footer-sticky text-white">
-    <div class="container">
-        <p>&copy; 2024 Elektroniczny Sklep. Wszelkie prawa zastrzeżone.</p>
-    </div>
-</footer>
 </body>
 </html>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var element = document.getElementById('myElement');
-        if (document.body.scrollHeight > window.innerHeight) {
-            element.classList.add('static');
-        }
-    });
-</script>

@@ -48,12 +48,12 @@ class ProductService
 
             $imageFile = Image::make($image->getRealPath());
 
-            $name = time() . '.webp';
+            $name = time().'.webp';
             $path = storage_path('app/public/products');
 
-            $imageFile->resize(460, 400, function ($constrain){
+            $imageFile->resize(460, 400, function ($constrain) {
                 $constrain->aspectRatio();
-            })->save($path . '/' . $name);
+            })->save($path.'/'.$name);
 
             $productData['image_src'] = $name;
         }

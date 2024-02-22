@@ -11,6 +11,7 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 class PaymentController extends Controller
 {
     protected $paymentService;
+
     protected $orderService;
 
     public function __construct(PaymentService $paymentService, OrderService $orderService)

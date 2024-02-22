@@ -74,7 +74,7 @@
                                         {{ $product['price'] }}
                                     </div>
                                     <div class="my-10 w-2/3">
-                                        {{ $product['description'] }}
+                                        {!! $product['description'] !!}
                                     </div>
                                     <div class="my-5 text-end">
                                         <hr class="my-2">

@@ -2,8 +2,8 @@
 
 namespace App\services;
 
-use App\Models\Order_detail;
 use App\Models\Order;
+use App\Models\Order_detail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -14,6 +14,7 @@ class OrderService
     {
         return Order::where('user_id', '=', Auth::id())->paginate(10);
     }
+
     public function store($products)
     {
         $order = new Order;

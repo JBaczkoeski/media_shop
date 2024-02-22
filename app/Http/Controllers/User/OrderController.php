@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
 use App\services\OrderService;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {

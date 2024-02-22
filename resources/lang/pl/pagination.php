@@ -6,5 +6,5 @@ return [
     'of' => 'z',
     'results' => 'wyników',
     'pagination.previous' => 'Poprzedni',
-    'pagination.next' => 'następny'
+    'pagination.next' => 'następny',
 ];

@@ -32,7 +32,7 @@ class PaymentService
             $cart_sum += $product['price'] * $cart_detail['quantity'];
         }
 
-        return ['buy_products' => $buy_products,'cart_sum' => $cart_sum];
+        return ['buy_products' => $buy_products, 'cart_sum' => $cart_sum];
     }
 
     public function clearCart()
