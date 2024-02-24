@@ -35,7 +35,9 @@ class EmployeeController extends Controller
 
     public function store(EmployeeRequest $request)
     {
-        $this->employeeService->store($request);
+        $user = $this->employeeService->store($request);
+
+        $this->employeeService->sendMail($user['email'], $user);
 
         return redirect()->back();
     }

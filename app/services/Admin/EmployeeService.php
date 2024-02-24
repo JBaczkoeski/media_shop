@@ -6,6 +6,9 @@ use App\Http\Requests\EmployeeRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class EmployeeService
 {
@@ -16,7 +19,12 @@ class EmployeeService
 
     public function store(EmployeeRequest $request)
     {
-        $user = User::create($request->validated());
+        $password = Str::random(10);
+
+        $validated = $request->validated();
+        $validated['password'] = Hash::make($password);
+
+        $user = User::create($validated);
 
         if ($request->position === 'shop_worker') {
             $user->assignRole('shop_worker');
@@ -25,6 +33,8 @@ class EmployeeService
         } else {
             $user->assignRole('shop_manager');
         }
+
+        return $user;
     }
 
     public function update(ProductRequest $request, Product $product): void
@@ -35,5 +45,13 @@ class EmployeeService
     public function destroy(Product $product): void
     {
         //
+    }
+
+    public function  sendMail($email, $user)
+    {
+        Mail::send('emails.employee', ['user' => $user], function ($message) use ($email) {
+            $message->to($email);
+            $message->subject('Twoje konto pracowanicze');
+        });
     }
 }

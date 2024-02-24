@@ -32,7 +32,6 @@ class EmployeeRequest extends FormRequest
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
             'phone_number' => 'required',
             'street' => 'required|string|max:255',
             'city' => 'required|string|max:255',

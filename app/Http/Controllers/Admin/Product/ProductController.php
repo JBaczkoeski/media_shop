@@ -41,7 +41,7 @@ class ProductController extends Controller
         $viewData = $this->productFilterService->search($request);
 
         if (Auth::check() && Auth::user()->hasRole('admin')) {
-            return view('admin.Product.Index', ['products' => $viewData])->render();
+            return view('admin.Product.Index', ['viewData' => $viewData])->render();
         }
 
         return view('user.products', ['viewData' => $viewData]);

@@ -62,28 +62,6 @@
                             @endif
                         </div>
                         <div class="form-group my-3">
-                            <input type="password"
-                                   name="password"
-                                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                   placeholder="Hasło tymczasowe">
-                            @if($errors->first('password'))
-                                <p class="w-full text-red-600 text-md mt-1">
-                                    {{($errors->first('password'))}}
-                                </p>
-                            @endif
-                        </div>
-                        <div class="form-group my-3">
-                            <input type="password"
-                                   name="password_confirmation"
-                                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                   placeholder="Potwierdzenie hasła">
-                            @if($errors->first('password_confirmation'))
-                                <p class="w-full text-red-600 text-md mt-1">
-                                    {{($errors->first('password_confirmation'))}}
-                                </p>
-                            @endif
-                        </div>
-                        <div class="form-group my-3">
                             <input type="text"
                                    name="phone_number"
                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

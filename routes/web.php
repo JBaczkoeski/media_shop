@@ -97,7 +97,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::group(['prefix' => 'pracownicy'], function () {
         Route::get('/', [EmployeeController::class, 'index'])->name('employees');
         Route::get('/dodawanie', [EmployeeController::class, 'create'])->name('employees.create');
-        Route::post('/dodawanie/dodawanie', [EmployeeController::class, 'store'])->name('employees.store');
+        Route::post('/dodawanie/dodaj', [EmployeeController::class, 'store'])->name('employees.store');
     });
 
     //STORES ADMIN

@@ -7,16 +7,17 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 
-    <script src="https://kit.fontawesome.com/1e48838dc2.js" crossorigin="anonymous"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/1e48838dc2.js" crossorigin="anonymous" defer></script>
 
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
 
     <title>Elektroniczny Sklep</title>
+
+    @livewireStyles
 </head>
 <body>
+@livewireScripts
 <nav class="bg-zinc-800">
     <div class="mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">

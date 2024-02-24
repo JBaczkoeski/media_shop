@@ -73,7 +73,7 @@
                                     <div class="my-5 text-red-700 text-5xl font-bold text-end mt-5 pe-10 underline underline-offset-1">
                                         {{ $product['price'] }}
                                     </div>
-                                    <div class="my-10 w-2/3">
+                                    <div class="my-10 w-2/3 text-sm">
                                         {!! $product['description'] !!}
                                     </div>
                                     <div class="my-5 text-end">
